@@ -14,17 +14,20 @@ is **complete and closed** — all six issues merged, tagged
 Remaining operational step: connect the repo to Vercel (the `site` URL stays the
 `techcart-landing-page.vercel.app` placeholder until confirmed).
 
-**M2 — Redesign** is the active milestone: reshape the shipped single-scroll page
-into an app-shell — an Ocean Royale brand kit, a `container-fluid` two-column
-grid, a sticky full-height left sidenav, an Overview hero with a Buyer/Admin app
-toggle, and a tabbed documentation area. Spec work in progress; see the four
-work packages below and their drafts in [`issues.md`](issues.md).
+[**M2 — Redesign**](https://github.com/Pravin671231/TechCart-Landing-page/milestone/2)
+is the active milestone: reshape the shipped single-scroll page into an
+app-shell — an Ocean Royale brand kit, a `container-fluid` two-column grid, a
+sticky full-height left sidenav, an Overview hero with a Buyer/Admin app toggle,
+and a tabbed documentation area. Issues
+[#16–#19](https://github.com/Pravin671231/TechCart-Landing-page/milestone/2) are
+open; full drafts in [`issues.md`](issues.md). The `LP-002` feature spec is still
+to be written.
 
 | ID  | Title                  | Scope                                                          | Status      | Release  |
 | --- | ---------------------- | ------------------------------------------------------------ | ----------- | -------- |
 | M0  | Repo & SRS Foundation  | Repository, `SRS.md`, `LP-001`, `architecture.md`, conventions | Complete    | —        |
 | M1  | Landing Page           | Build and deploy the single-page site per `LP-001`             | Complete    | `v1.0.0` |
-| M2  | Redesign               | Ocean Royale brand kit + `container-fluid` app-shell per `LP-002` | Specs drafting | `v2.0.0` (planned) |
+| M2  | Redesign               | Ocean Royale brand kit + `container-fluid` app-shell per `LP-002` | In progress — issues [#16–#19](https://github.com/Pravin671231/TechCart-Landing-page/milestone/2) open | `v2.0.0` (planned) |
 
 **Possible later milestones** (not committed):
 
@@ -117,10 +120,10 @@ One issue per package. Full drafts in [`issues.md`](issues.md). Order is strict:
 
 | Issue | Package                          | Requirements covered              |
 | ----- | ------------------------------- | -------------------------------- |
-| M2.1  | Ocean Royale brand kit           | `FR-LP-021`                       |
-| M2.2  | App-shell layout + Overview      | `FR-LP-022`, `023`, `024`, `027` |
-| M2.3  | Documentation tabs               | `FR-LP-025`, `027`               |
-| M2.4  | Migrate M1 sections into tabs     | `FR-LP-026`                       |
+| [#16](https://github.com/Pravin671231/TechCart-Landing-page/issues/16) M2.1 | Ocean Royale brand kit           | `FR-LP-021`                       |
+| [#17](https://github.com/Pravin671231/TechCart-Landing-page/issues/17) M2.2 | App-shell layout + Overview      | `FR-LP-022`, `023`, `024`, `027` |
+| [#18](https://github.com/Pravin671231/TechCart-Landing-page/issues/18) M2.3 | Documentation tabs               | `FR-LP-025`, `027`               |
+| [#19](https://github.com/Pravin671231/TechCart-Landing-page/issues/19) M2.4 | Migrate M1 sections into tabs     | `FR-LP-026`                       |
 
 ### Definition of Done
 
