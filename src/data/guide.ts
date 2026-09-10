@@ -1,5 +1,5 @@
 /**
- * Structured content for the engineering-process guide sections (issue #4).
+ * Structured content for the engineering-process guide sections (issues #4–#5).
  * Every value traces to `docs/srs/SRS.md` Appendix A or the LP-001 §2 outline
  * cited beside it — nothing here is invented.
  */
@@ -200,4 +200,224 @@ export const ENV_BEST_PRACTICES: readonly string[] = [
   'Use distinct secret values per environment — dev, staging and production never share credentials.',
   'Validate required variables at process start (Zod) so a missing value fails fast and loudly.',
   'For a team, use a secrets manager rather than passing .env files around.',
+];
+
+/* ---------------------------------------------------------------------------
+ * Issue #5 — engineering & delivery
+ * ------------------------------------------------------------------------- */
+
+export interface ApiFailure {
+  symptom: string;
+  cause: string;
+  fix: string;
+}
+
+// LP-001 FR-LP-012 — common failures table (verbatim from the spec).
+export const API_FAILURES: readonly ApiFailure[] = [
+  {
+    symptom: 'Request blocked, no response',
+    cause: 'CORS — the origin is not on the backend allowlist',
+    fix: 'Add the origin to the backend CORS config (the class of bug TechCart hit)',
+  },
+  {
+    symptom: '401 after a successful login',
+    cause: 'Bearer token from the set-auth-token response header not stored or not resent',
+    fix: 'Persist it client-side; resend it as Authorization: Bearer <token>',
+  },
+  {
+    symptom: 'Auth works locally, fails in production',
+    cause: 'Cross-domain cookies dropped between the Vercel front end and the Render backend',
+    fix: 'Use the bearer-token path, as TechCart does',
+  },
+  {
+    symptom: '404 on every call',
+    cause: 'Wrong NEXT_PUBLIC_API_URL / base URL for the environment',
+    fix: "Check the environment's value; log the resolved base URL once at boot",
+  },
+  {
+    symptom: 'Stale data after a mutation',
+    cause: 'The RTK Query cache was not invalidated',
+    fix: 'Tag the query and invalidate the tag in the mutation',
+  },
+  {
+    symptom: '422 with a validation error',
+    cause: 'The request body shape does not match the backend Zod schema',
+    fix: 'Compare the payload to the schema; fix the client serializer',
+  },
+  {
+    symptom: 'Slow page, many sequential calls',
+    cause: 'Request waterfall / N+1',
+    fix: 'Parallelise independent calls; add a batch endpoint if needed',
+  },
+];
+
+// LP-001 FR-LP-012 — triage flow.
+export const API_TRIAGE: readonly string[] = [
+  'Reproduce the failure reliably.',
+  'Replay the request with cURL or Postman to isolate the front end from the back end.',
+  'Inspect the request — URL, method, headers, body.',
+  'Inspect the response — status, code, body.',
+  'Check the environment values (base URL, keys).',
+  'Check the Authorization header is present and correct.',
+  'Apply the fix and re-run.',
+];
+
+// SRS Appendix A.8 — the real ci.yml, trimmed for display.
+export const CI_YML = `name: CI
+
+on:
+  pull_request:
+    branches: [main]
+
+concurrency:
+  group: ci-\${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
+        with:
+          node-version-file: .nvmrc
+          cache: npm
+      - run: npm ci
+      - run: npm run lint
+
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        workspace: [backend, buyer-app, admin-app]
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
+        with: { node-version-file: .nvmrc, cache: npm }
+      - run: npm ci
+      - if: matrix.workspace == 'backend'
+        uses: actions/cache@v4
+        with: { path: ~/.cache/mongodb-binaries, key: mongodb-\${{ runner.os }} }
+      - run: npm run test --workspace \${{ matrix.workspace }}
+        env:
+          ATLAS_SEARCH_TEST_URI: \${{ secrets.ATLAS_SEARCH_TEST_URI }}
+
+  build:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        workspace: [backend, buyer-app, admin-app]
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
+        with: { node-version-file: .nvmrc, cache: npm }
+      - run: npm ci
+      - run: npm run build --workspace \${{ matrix.workspace }}
+        env:            # buyer-app only
+          NEXT_PUBLIC_API_URL: http://localhost:4000
+          NEXT_PUBLIC_GOOGLE_CLIENT_ID: dummy-client-id`;
+
+export interface ToolFact {
+  name: string;
+  what: string;
+  techcart: string;
+  why: string;
+}
+
+// LP-001 FR-LP-013.
+export const CODE_TOOLS: readonly ToolFact[] = [
+  {
+    name: 'ESLint',
+    what: 'A linter that catches bugs and anti-patterns and enforces consistency.',
+    techcart:
+      'A flat config in eslint.config.ts with typescript-eslint; per-workspace configs extend the root. Runs in CI as "npm run lint" and ideally as a pre-commit hook.',
+    why: 'Mechanical review feedback is caught before a human reads the diff.',
+  },
+  {
+    name: 'Prettier',
+    what: 'A formatter — it rewrites code to one canonical style. Formatting only, no lint rules.',
+    techcart:
+      'Configured in .prettierrc. Run on save in the editor and as "prettier --check" in CI. Kept in a separate lane from ESLint (no eslint-plugin-prettier) so the two tools never fight.',
+    why: 'No time is spent arguing about formatting in review.',
+  },
+  {
+    name: 'package-lock.json',
+    what: 'The exact, fully resolved dependency tree — every transitive version, pinned.',
+    techcart:
+      'Committed. CI installs with "npm ci", which fails if the lockfile and package.json disagree. TechCart pins overrides for postcss and sharp, resolved through the lockfile. Never hand-edited; merge conflicts are resolved by re-running npm install.',
+    why: 'Every machine and every CI run builds against identical dependency versions.',
+  },
+];
+
+// LP-001 FR-LP-015 — deployment best practices.
+export const DEPLOY_BEST_PRACTICES: readonly string[] = [
+  'Immutable build artifacts — the thing tested is the thing deployed.',
+  'Environment parity — dev, staging and production differ only in configuration.',
+  'Health-check endpoints the platform can poll.',
+  'Database seed and migration scripts kept in the repo (backend/src/scripts).',
+  'One-click rollback through the platform.',
+  'A preview deployment for every pull request.',
+  'DNS and TLS managed by the platform.',
+];
+
+// LP-001 FR-LP-016 — API design principles (from TechCart).
+export const API_PRINCIPLES: readonly string[] = [
+  'RESTful resource routes under backend/src/routes, with logic in feature modules/.',
+  'Zod schemas are the single validation authority; the front ends do their own checks for UX only.',
+  'A uniform error envelope on every response: { success, code, message }.',
+  'Dedicated status-update endpoints rather than overloading a generic update.',
+  'Deterministic pagination — order by the sort key with _id as the tie-breaker.',
+  'Money in whole rupees everywhere except the payments collection (integer paise), converted once at payment time.',
+];
+
+// LP-001 FR-LP-017 — Git and GitHub conventions.
+export const GIT_CONVENTIONS: {
+  branching: readonly string[];
+  commits: readonly string[];
+  prs: readonly string[];
+  repo: readonly string[];
+} = {
+  branching: [
+    'Trunk-based on main.',
+    'Short-lived branches named feature/<issue>-<scope>.',
+    'Squash-merge only — one commit per PR on main.',
+    'Branch protection on main: required CI checks, no direct pushes, linear history.',
+  ],
+  commits: [
+    'Conventional Commits: type(scope): message (Issue #N).',
+    'Small, atomic, imperative-mood messages.',
+  ],
+  prs: [
+    'One issue per PR; the description links the issue and the relevant SRS section.',
+    'CI green and a review before merge.',
+    'Delete the branch after merge.',
+    'Keep each PR small enough to review in one sitting.',
+  ],
+  repo: [
+    'Issues tied to milestones (M0–M11).',
+    'A consistent label scheme.',
+    'docs/ treated as a living specification.',
+    'An optional CODEOWNERS file.',
+    'Semantic-version tags on release.',
+  ],
+};
+
+// LP-001 FR-LP-017 — GitHub Actions anatomy, mapped to ci.yml.
+export const ACTIONS_ANATOMY: readonly { term: string; note: string }[] = [
+  { term: 'events', note: 'What triggers a run — ci.yml uses pull_request to main.' },
+  { term: 'jobs', note: 'Independent units that run in parallel — lint, test, build.' },
+  {
+    term: 'steps',
+    note: 'Ordered commands inside a job — checkout, setup-node, npm ci, npm run ...',
+  },
+  { term: 'matrix', note: 'Fans one job into many — test and build each run once per workspace.' },
+  { term: 'secrets', note: 'Injected via secrets.* — ci.yml reads ATLAS_SEARCH_TEST_URI.' },
+  {
+    term: 'cache',
+    note: 'actions/cache keys reusable state — the backend mongodb-binaries download.',
+  },
+  {
+    term: 'concurrency',
+    note: 'cancel-in-progress kills a superseded run when a new commit is pushed.',
+  },
 ];

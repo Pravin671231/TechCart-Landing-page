@@ -1,0 +1,31 @@
+---
+import Prose from './Prose.astro';
+import Callout from './Callout.astro';
+import { CODE_TOOLS } from '../data/guide';
+---
+
+<Prose class="max-w-none">
+  <p>
+    Three files keep the codebase consistent and reproducible. Each does one job and stays out of
+    the others' way.
+  </p>
+
+  {CODE_TOOLS.map((tool) => (
+    <>
+      <h3>{tool.name}</h3>
+      <p>{tool.what}</p>
+      <p>
+        <strong>In TechCart:</strong> {tool.techcart}
+      </p>
+      <p>
+        <strong>Why it matters:</strong> {tool.why}
+      </p>
+    </>
+  ))}
+
+  <Callout type="note">
+    ESLint and Prettier are kept in separate lanes — ESLint for correctness, Prettier for
+    formatting. Wiring Prettier in as an ESLint rule (eslint-plugin-prettier) makes the two fight
+    and slows the lint run down.
+  </Callout>
+</Prose>
