@@ -98,7 +98,10 @@ URL until the project is connected.
   `<code>` / `<strong>` onto a new line. Keep identifiers as plain text in prose;
   reserve inline `<code>` for standalone tokens.
 - Node is pinned to `24` via `.nvmrc` / `.node-version`; CI reads `.nvmrc`.
-- Use the `discuss-plan-build` skill for any non-trivial change.
+- **Skills** (vendored in `.claude/skills/`, shared verbatim with the TechCart repo):
+  use `discuss-plan-build` for any non-trivial change; `auto-commit-push` to
+  stage, commit, and push the working tree; `auto-pr-merge` to open the PR, wait
+  for CI, squash-merge, and clean up.
 - Accessibility bar is **WCAG 2.1 AA**; no horizontal page scroll 320–1920 px
   (wide tables/code blocks scroll inside their own `overflow-x-auto` container).
 

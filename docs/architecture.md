@@ -87,12 +87,13 @@ git push  →  Vercel (Astro preset)  →  astro build  →  static dist/  →  
 - **Branches:** `feature/<issue>-<scope>` → `main`; squash-merge only; branch
   protection on `main` (required CI, no direct pushes, linear history).
 - **Commits:** Conventional Commits — `type(scope): message (Issue #N)`.
-- **AI attribution (this repo):** `Co-Authored-By: Claude Sonnet 5
-  <noreply@anthropic.com>` on commits; `🤖 Generated with [Claude Code](https://claude.com/claude-code)`
-  on pull requests. (TechCart's own repo forbids AI trailers — that is TechCart's
-  rule, not this project's.)
+- **AI attribution:** none. Commits carry no `Co-Authored-By` trailer and pull
+  requests carry no "Generated with Claude Code" line.
 - **Planning:** use the `discuss-plan-build` Claude Code skill for non-trivial
   changes.
+- **Skills:** `discuss-plan-build`, `auto-commit-push`, and `auto-pr-merge` are
+  vendored in `.claude/skills/`, kept verbatim in sync with the TechCart repo so
+  both projects share one definition.
 - **Formatting / linting:** Prettier (`prettier --check` in CI) and ESLint
   (`npm run lint` in CI).
 - **Node:** pinned to `24` via `.nvmrc` and `.node-version`, matching TechCart.
