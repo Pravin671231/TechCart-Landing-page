@@ -1,0 +1,81 @@
+---
+import Prose from './Prose.astro';
+import CodeBlock from './CodeBlock.astro';
+import {
+  ROOT_TREE,
+  ROOT_DIR_NOTES,
+  BACKEND_SRC_TREE,
+  BACKEND_DIR_NOTES,
+  FEATURE_MODULE_TREE,
+} from '../data/guide';
+
+const enforceRule = `# backend/CLAUDE.md
+
+When adding a feature, create backend/src/modules/<name>/ with:
+  <name>.routes.ts
+  <name>.controller.ts
+  <name>.service.ts
+  <name>.schema.ts     # Zod — the validation authority
+  <name>.test.ts`;
+
+const notesList = 'mt-3 grid gap-x-6 gap-y-2 text-sm sm:grid-cols-[14rem_1fr]';
+---
+
+<Prose class="max-w-none">
+  <p>
+    TechCart is one npm-workspaces monorepo with a flat structure: three workspaces &mdash;
+    buyer-app, admin-app and backend &mdash; sharing a single API and a single database.
+  </p>
+
+  <h3>Repository root</h3>
+  <CodeBlock title="TechCart/" code={ROOT_TREE} />
+  <dl class={notesList}>
+    {ROOT_DIR_NOTES.map((entry) => (
+      <div class="contents">
+        <dt class="font-mono text-fg">{entry.path}</dt>
+        <dd class="text-muted">{entry.note}</dd>
+      </div>
+    ))}
+  </dl>
+
+  <h3>Inside the backend</h3>
+  <CodeBlock title="backend/src/" code={BACKEND_SRC_TREE} />
+  <dl class={notesList}>
+    {BACKEND_DIR_NOTES.map((entry) => (
+      <div class="contents">
+        <dt class="font-mono text-fg">{entry.path}</dt>
+        <dd class="text-muted">{entry.note}</dd>
+      </div>
+    ))}
+  </dl>
+
+  <h3>The feature-module pattern</h3>
+  <p>
+    Every feature is a single folder under modules/ holding its route definitions, controller,
+    service, Zod schema and tests together. Adding a feature means adding one folder &mdash; nothing
+    is scattered across a routes tree, a controllers tree and a services tree.
+  </p>
+  <CodeBlock title="a feature module" code={FEATURE_MODULE_TREE} />
+
+  <h3>Why a flat npm-workspaces monorepo</h3>
+  <p>
+    The structure mirrors the sibling LeafFlow project and is deliberately simpler than pnpm plus
+    Turborepo. There is no shared packages directory &mdash; validation schemas live in the backend
+    only &mdash; which keeps the build to exactly three workspaces.
+  </p>
+
+  <h3>Enforcing it with Claude Code</h3>
+  <p>
+    Structure that is not enforced drifts. TechCart keeps it honest with a scoped backend/CLAUDE.md
+    that states the layout as a rule:
+  </p>
+  <CodeBlock title="backend/CLAUDE.md" code={enforceRule} />
+  <p>Backed up by:</p>
+  <ul>
+    <li>
+      an optional ESLint no-restricted-imports rule, or a hook that rejects new files outside an
+      allowed path;
+    </li>
+    <li>a PR-checklist item &mdash; &ldquo;new code follows the feature-module layout&rdquo;.</li>
+  </ul>
+</Prose>

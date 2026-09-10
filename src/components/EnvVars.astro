@@ -1,0 +1,67 @@
+---
+import Prose from './Prose.astro';
+import CodeBlock from './CodeBlock.astro';
+import Callout from './Callout.astro';
+import { ENV_VARS, ENV_BEST_PRACTICES } from '../data/guide';
+
+const backendVars = ENV_VARS.filter((v) => v.scope === 'backend');
+const frontendVars = ENV_VARS.filter((v) => v.scope === 'buyer-app');
+const varList = 'mt-3 grid gap-x-6 gap-y-2 text-sm sm:grid-cols-[16rem_1fr]';
+---
+
+<Prose class="max-w-none">
+  <p>
+    Environment configuration is handled differently at each tier. The backend is the only workspace
+    that needs real setup; the buyer and admin apps take a couple of build-time public values.
+  </p>
+
+  <h3>Development</h3>
+  <p>Copy the example file and fill it in. The real .env is git-ignored:</p>
+  <CodeBlock title="terminal" code={'cp backend/.env.example backend/.env'} />
+  <dl class={varList}>
+    {[...backendVars, ...frontendVars].map((v) => (
+      <div class="contents">
+        <dt class="font-mono text-fg">{v.name}</dt>
+        <dd class="text-muted">{v.purpose}</dd>
+      </div>
+    ))}
+  </dl>
+  <p>MONGODB_URI can point at a local mongod or an Atlas dev cluster.</p>
+
+  <h3>Testing / CI</h3>
+  <p>
+    No real secrets live in the repository. Genuine test secrets are GitHub Actions Secrets &mdash;
+    TechCart's workflow reads ATLAS_SEARCH_TEST_URI that way. Values that are needed at build time
+    but are not sensitive are set inline in the workflow:
+  </p>
+  <CodeBlock
+    title="ci.yml"
+    code={
+      'env:\n  NEXT_PUBLIC_API_URL: http://localhost:4000\n  NEXT_PUBLIC_GOOGLE_CLIENT_ID: dummy-client-id'
+    }
+  />
+
+  <h3>Production</h3>
+  <p>
+    Set in the Vercel and Render dashboards, one set per environment. Each of development, staging
+    and production has its own MongoDB Atlas cluster and its own Razorpay key pair, so a mistake or
+    a leak in one environment cannot reach another.
+  </p>
+
+  <Callout type="warning">
+    Never commit a real <code>.env</code>. Commit only <code>.env.example</code> with placeholder
+    values.
+  </Callout>
+
+  <Callout type="warning">
+    A <code>PUBLIC_</code> (Astro) or <code>NEXT_PUBLIC_</code> (Next.js) prefix means the value is
+    bundled into the browser. Never put a secret behind one.
+  </Callout>
+
+  <h3>Best practices</h3>
+  <ul>
+    {ENV_BEST_PRACTICES.map((practice) => (
+      <li>{practice}</li>
+    ))}
+  </ul>
+</Prose>

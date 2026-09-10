@@ -1,0 +1,51 @@
+---
+import Prose from './Prose.astro';
+import CodeBlock from './CodeBlock.astro';
+import { NODE_TOOLS } from '../data/guide';
+---
+
+<Prose class="max-w-none">
+  <p>
+    TechCart pins its Node version in two one-line files at the repository root, both containing the
+    single line <code>24</code>:
+  </p>
+  <CodeBlock title="root" code={'$ cat .nvmrc .node-version\n24\n24'} />
+
+  <h3>Which tool reads which</h3>
+  <div class="overflow-x-auto rounded-lg border border-border">
+    <table class="w-full border-collapse text-left text-sm">
+      <thead class="bg-surface text-xs tracking-wide text-muted uppercase">
+        <tr>
+          <th class="px-4 py-2 font-medium">File</th>
+          <th class="px-4 py-2 font-medium">Read by</th>
+          <th class="px-4 py-2 font-medium">Switch command</th>
+        </tr>
+      </thead>
+      <tbody>
+        {NODE_TOOLS.map((tool) => (
+          <tr class="border-t border-border align-top">
+            <td class="px-4 py-2 font-mono whitespace-nowrap text-fg">{tool.file}</td>
+            <td class="px-4 py-2 text-muted">{tool.readBy}</td>
+            <td class="px-4 py-2 font-mono text-muted">{tool.command}</td>
+          </tr>
+        ))}
+      </tbody>
+    </table>
+  </div>
+
+  <h3>Why pin</h3>
+  <p>
+    So development, CI and production all run the same Node major, and the class of &ldquo;works on
+    my machine&rdquo; bug that comes from version drift simply disappears. TechCart's CI reads the
+    pin with the setup-node option <code>node-version-file: .nvmrc</code>, and Vercel and Render
+    honour these files too, so the whole pipeline agrees on one runtime.
+  </p>
+
+  <h3>Best practice</h3>
+  <ul>
+    <li>commit both files;</li>
+    <li>keep them in sync &mdash; a mismatch is worse than no pin;</li>
+    <li>pin at least the major version;</li>
+    <li>bump the version through a normal PR so CI validates the change before it lands.</li>
+  </ul>
+</Prose>

@@ -1,0 +1,71 @@
+---
+import Prose from './Prose.astro';
+import CodeBlock from './CodeBlock.astro';
+import Callout from './Callout.astro';
+import { SKILLS, SKILL_FRONTMATTER, TECHCART_RULES } from '../data/guide';
+
+const rulesBlock = `# CLAUDE.md — rules\n\n${TECHCART_RULES.map((r) => `- ${r.replace(/`/g, '')}`).join('\n')}`;
+---
+
+<Prose class="max-w-none">
+  <p>
+    TechCart is built with Claude Code. The repository carries two kinds of durable instruction that
+    the model reads on every session: skills, which are packaged workflows, and rules, which are
+    always-on project context.
+  </p>
+
+  <h3>Skills</h3>
+  <p>
+    A skill is a packaged set of instructions for a recurring task. It is invoked by name or as a
+    slash command, and the model loads the instructions and follows them in place of its default
+    approach. Each skill is a folder under .claude/skills/ that contains a SKILL.md file.
+  </p>
+  <p>
+    SKILL.md is YAML frontmatter plus a body. The frontmatter has a name and a description whose
+    wording carries the trigger phrases the model matches against; an optional allowed-tools list
+    narrows what the skill may call. The body is the instruction set, and supporting files can sit
+    alongside it in the folder.
+  </p>
+  <CodeBlock title="SKILL.md" code={SKILL_FRONTMATTER} />
+
+  <p>The TechCart repository ships four skills:</p>
+  <ul>
+    {SKILLS.map((skill) => (
+      <li>
+        <code>{skill.name}</code> &mdash; {skill.purpose}
+      </li>
+    ))}
+  </ul>
+  <p>
+    To create one, run the skill-creator skill, describe the task and its trigger phrases, and keep
+    the instruction body short and imperative. Reach for a skill over a plain prompt when a task is
+    repeated, multi-step, and has a fixed correct sequence &mdash; release steps, review checklists,
+    repo-specific flows.
+  </p>
+
+  <h3>Rules</h3>
+  <p>
+    CLAUDE.md at the repository root holds always-on context: what the project is, its invariants,
+    its conventions. Keep it short and factual. A scoped CLAUDE.md in a subdirectory such as
+    backend/CLAUDE.md overrides the root for that subtree &mdash; the most-specific file wins, so
+    workspace-specific rules belong there. AGENTS.md is the cross-tool equivalent, and TechCart
+    keeps both at the root and per workspace.
+  </p>
+
+  <Callout type="note">
+    <code>.claude/settings.json</code> holds tool permissions and hooks. Any &ldquo;whenever X
+    happens, do Y&rdquo; automation is a hook &mdash; the harness runs it, not the model &mdash; so
+    it cannot be written as a prose rule.
+  </Callout>
+
+  <p>Good rules are:</p>
+  <ul>
+    <li>imperative &mdash; &ldquo;Do X&rdquo;, not &ldquo;the project prefers X&rdquo;;</li>
+    <li>one per line, each independently verifiable;</li>
+    <li>shown by example rather than described;</li>
+    <li>deleted the moment they go stale.</li>
+  </ul>
+
+  <p>A representative rule block for TechCart:</p>
+  <CodeBlock title="CLAUDE.md" code={rulesBlock} />
+</Prose>
