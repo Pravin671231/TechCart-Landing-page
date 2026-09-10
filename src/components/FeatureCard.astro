@@ -1,0 +1,35 @@
+---
+import { ICONS, type Feature } from '../data/techcart';
+
+interface Props {
+  feature: Feature;
+}
+
+const { feature } = Astro.props;
+---
+
+<article class="group rounded-lg border border-border bg-surface p-5 transition-transform hover:-translate-y-0.5">
+  <div class="flex items-center gap-3">
+    <span class="inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-md bg-accent/10 text-accent">
+      <svg
+        class="h-5 w-5"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        aria-hidden="true"
+      >
+        <path d={ICONS[feature.icon]}></path>
+      </svg>
+    </span>
+    <h3 class="text-base font-semibold text-fg">{feature.title}</h3>
+  </div>
+  <p class="mt-3 text-sm leading-6 text-muted">{feature.blurb}</p>
+  <p class="mt-3">
+    <span class="inline-block rounded-full border border-border px-2 py-0.5 text-xs font-medium text-muted">
+      {feature.milestone}
+    </span>
+  </p>
+</article>

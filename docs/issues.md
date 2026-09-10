@@ -88,7 +88,7 @@ None.
 
 ## M1.2 — Page shell: nav, TOC sidebar, scroll-spy, theme toggle
 
-**Status:** In progress — [#2](https://github.com/Pravin671231/TechCart-Landing-page/issues/2) on branch `feature/2-page-shell`
+**Status:** Complete — [#2](https://github.com/Pravin671231/TechCart-Landing-page/issues/2) (merged in [#8](https://github.com/Pravin671231/TechCart-Landing-page/pull/8))
 
 ### Context
 
@@ -145,7 +145,7 @@ theme toggle, and the shared content primitives (`Section`, `Prose`, `CodeBlock`
 
 ## M1.3 — Product sections
 
-**Status:** Open — [#3](https://github.com/Pravin671231/TechCart-Landing-page/issues/3)
+**Status:** In progress — [#3](https://github.com/Pravin671231/TechCart-Landing-page/issues/3) on branch `feature/3-product-sections`
 
 ### Context
 

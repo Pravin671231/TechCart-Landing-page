@@ -1,0 +1,63 @@
+---
+import CodeBlock from './CodeBlock.astro';
+import { TECHCART_REPO_URL, TECHCART_DOCS } from '../consts';
+
+const quickstart = [
+  'git clone https://github.com/Pravin671231/TechCart.git',
+  'cd TechCart',
+  'npm install',
+  'cp backend/.env.example backend/.env   # fill in MONGODB_URI, ADMIN_API_KEY, R2_*',
+  '',
+  '# three terminals, or one Docker command:',
+  'npm run dev --workspace backend    # http://localhost:4000',
+  'npm run dev --workspace buyer-app  # http://localhost:3000',
+  'npm run dev --workspace admin-app  # http://localhost:5173',
+  '',
+  'docker compose up --build          # all three at once',
+].join('\n');
+
+const links = [
+  { label: 'Repository', href: TECHCART_REPO_URL },
+  { label: 'SRS', href: TECHCART_DOCS.srs },
+  { label: 'Architecture', href: TECHCART_DOCS.architecture },
+  { label: 'backend/CLAUDE.md', href: TECHCART_DOCS.backendClaude },
+  { label: 'buyer-app/CLAUDE.md', href: TECHCART_DOCS.buyerAppClaude },
+  { label: 'admin-app/CLAUDE.md', href: TECHCART_DOCS.adminAppClaude },
+];
+---
+
+<p class="text-sm text-muted">
+  A single install covers all three npm workspaces. The buyer and admin apps need no environment
+  setup; the backend reads <code class="font-mono">backend/.env</code>.
+</p>
+
+<CodeBlock title="clone & run" code={quickstart} />
+
+<ul class="mt-6 flex flex-wrap gap-x-5 gap-y-2 text-sm">
+  {links.map((link) => (
+    <li>
+      <a
+        href={link.href}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="font-medium text-accent underline underline-offset-2"
+      >
+        {link.label}
+      </a>
+    </li>
+  ))}
+</ul>
+
+<p class="mt-8 border-t border-border pt-6 text-xs text-muted">
+  This landing page is built with Astro and Tailwind CSS and deploys to Vercel. It presents the
+  public{' '}
+  <a
+    href={TECHCART_REPO_URL}
+    target="_blank"
+    rel="noopener noreferrer"
+    class="text-accent underline underline-offset-2"
+  >
+    TechCart
+  </a>{' '}
+  repository — all facts trace to its README, architecture doc, and CI workflow.
+</p>

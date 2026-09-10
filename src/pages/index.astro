@@ -4,13 +4,19 @@ import Nav from '../components/Nav.astro';
 import TocSidebar from '../components/TocSidebar.astro';
 import MobileNav from '../components/MobileNav.astro';
 import Section from '../components/Section.astro';
-import CodeBlock from '../components/CodeBlock.astro';
-import Callout from '../components/Callout.astro';
+import Hero from '../components/Hero.astro';
+import ProjectSummary from '../components/ProjectSummary.astro';
+import FeatureCard from '../components/FeatureCard.astro';
+import SuggestedFeatures from '../components/SuggestedFeatures.astro';
+import StackTable from '../components/StackTable.astro';
+import Footer from '../components/Footer.astro';
 import { TOC } from '../data/toc';
-import { TECHCART_REPO_URL } from '../consts';
+import { FEATURES, LANDING_STACK, TECHCART_STACK } from '../data/techcart';
 
-// Everything below "hero" is a stub for now — issues #3–#5 fill these in.
-const stubs = TOC.filter((entry) => entry.id !== 'hero');
+// Sections handled here in #3; the rest stay stubbed for #4 (claude-code…env-vars)
+// and #5 (api-debugging…git-github).
+const handled = ['hero', 'summary', 'features', 'suggested-features', 'tech-stack', 'get-started'];
+const guideStubs = TOC.filter((entry) => !handled.includes(entry.id));
 ---
 
 <BaseLayout>
@@ -22,58 +28,44 @@ const stubs = TOC.filter((entry) => entry.id !== 'hero');
     <div class="min-w-0">
       <MobileNav />
 
-      <section id="hero" tabindex="-1" class="section-enter scroll-mt-20 py-16 md:py-24">
-        <p class="text-xs font-medium tracking-widest text-muted uppercase">Landing page · shell</p>
-        <h1 class="mt-3 text-4xl font-bold tracking-tight text-fg md:text-5xl">
-          Tech
-          <span class="bg-gradient-to-r from-accent to-accent-2 bg-clip-text text-transparent">
-            Cart
-          </span>
-        </h1>
-        <p class="mt-4 max-w-xl text-lg text-muted">
-          Production, India-first e-commerce — a Next.js storefront and a React admin console on one
-          Express + MongoDB API. This page is the structural shell; content lands in issues #3–#5.
-        </p>
-        <div class="mt-6 flex flex-wrap gap-3">
-          <a
-            href={TECHCART_REPO_URL}
-            target="_blank"
-            rel="noopener noreferrer"
-            class="rounded-md bg-accent px-4 py-2 text-sm font-medium text-accent-fg hover:opacity-90"
-          >
-            View on GitHub
-          </a>
-          <a
-            href="#summary"
-            class="rounded-md border border-border px-4 py-2 text-sm font-medium text-fg hover:bg-surface"
-          >
-            Read the guide
-          </a>
-        </div>
-      </section>
+      <Hero />
 
-      {stubs.map((entry) => (
+      <Section id="summary" title="Project Summary">
+        <ProjectSummary />
+      </Section>
+
+      <Section id="features" title="Features">
+        <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          {FEATURES.map((feature) => (
+            <FeatureCard feature={feature} />
+          ))}
+        </div>
+      </Section>
+
+      <Section id="suggested-features" title="Suggested Features">
+        <SuggestedFeatures />
+      </Section>
+
+      <Section id="tech-stack" title="Tech Stack">
+        <StackTable
+          caption="This landing page"
+          head={['Concern', 'Choice', 'Why']}
+          rows={LANDING_STACK}
+        />
+        <StackTable caption="TechCart" head={['Layer', 'Technology']} rows={TECHCART_STACK} />
+      </Section>
+
+      {guideStubs.map((entry) => (
         <Section id={entry.id} title={entry.title}>
           <p class="text-muted">
-            Placeholder for &ldquo;{entry.title}&rdquo;. Real content lands in issues #3&ndash;#5.
+            Placeholder for &ldquo;{entry.title}&rdquo;. Real content lands in issues #4&ndash;#5.
           </p>
-
-          {entry.id === 'claude-code' && (
-            <div class="mt-4">
-              <Callout type="note">
-                A <code>note</code> callout — neutral context or an aside.
-              </Callout>
-              <Callout type="tip">
-                A <code>tip</code> callout — a recommended practice.
-              </Callout>
-              <Callout type="warning">
-                A <code>warning</code> callout — never commit a real <code>.env</code> file.
-              </Callout>
-              <CodeBlock lang="bash" title="terminal" code={'npm install\nnpm run dev'} />
-            </div>
-          )}
         </Section>
       ))}
+
+      <Section id="get-started" title="Get Started">
+        <Footer />
+      </Section>
     </div>
   </div>
 </BaseLayout>
