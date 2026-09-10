@@ -193,7 +193,7 @@ All TechCart facts come from one typed data module.
 
 ## M1.4 — Guide sections, part 1 (Claude Code & repo structure)
 
-**Status:** In progress — [#4](https://github.com/Pravin671231/TechCart-Landing-page/issues/4) on branch `feature/4-guide-part-1`
+**Status:** Complete — [#4](https://github.com/Pravin671231/TechCart-Landing-page/issues/4) (merged in [#10](https://github.com/Pravin671231/TechCart-Landing-page/pull/10))
 
 ### Context
 
@@ -243,7 +243,7 @@ under each FR — this issue turns the outlines into copy.
 
 ## M1.5 — Guide sections, part 2 (engineering & delivery)
 
-**Status:** Open — [#5](https://github.com/Pravin671231/TechCart-Landing-page/issues/5)
+**Status:** In progress — [#5](https://github.com/Pravin671231/TechCart-Landing-page/issues/5) on branch `feature/5-guide-part-2`
 
 ### Context
 

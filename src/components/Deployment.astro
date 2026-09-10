@@ -1,0 +1,38 @@
+---
+import Prose from './Prose.astro';
+import CodeBlock from './CodeBlock.astro';
+import { DEPLOY_BEST_PRACTICES } from '../data/guide';
+---
+
+<Prose class="max-w-none">
+  <h3>How TechCart deploys</h3>
+  <p>
+    The backend runs on Render as a Docker service, built from docker/Dockerfile.backend through the
+    repo-root render.yaml Blueprint, and redeploys on merge to main. The buyer and admin apps are
+    two separate Vercel projects pointed at the same repository, each with its project root
+    directory set to its workspace folder; every pull request gets a preview deployment.
+  </p>
+  <p>
+    There are three isolated environments — development, staging and production — and each has its
+    own MongoDB Atlas cluster and its own Razorpay key pair. For local work, one command brings the
+    whole stack up:
+  </p>
+  <CodeBlock
+    title="terminal"
+    code={'docker compose up --build\n# backend :4000  buyer-app :3000  admin-app :5173'}
+  />
+
+  <h3>Best practices</h3>
+  <ul>
+    {DEPLOY_BEST_PRACTICES.map((practice) => (
+      <li>{practice}</li>
+    ))}
+  </ul>
+
+  <h3>This landing page</h3>
+  <p>
+    Simpler: astro build produces a static dist/ folder, Vercel auto-detects the Astro framework
+    preset, and no configuration is needed. A vercel.json is only required for custom headers or
+    redirects, and any static host works as a fallback.
+  </p>
+</Prose>

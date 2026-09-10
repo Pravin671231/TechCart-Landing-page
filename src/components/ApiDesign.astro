@@ -1,0 +1,37 @@
+---
+import Prose from './Prose.astro';
+import { API_PRINCIPLES } from '../data/guide';
+---
+
+<Prose class="max-w-none">
+  <h3>Design principles</h3>
+  <ul>
+    {API_PRINCIPLES.map((principle) => (
+      <li>{principle}</li>
+    ))}
+  </ul>
+
+  <h3>Why documentation matters</h3>
+  <p>
+    The API is the contract between the backend and two front ends, plus any future consumer. Good
+    documentation cuts onboarding time, doubles as a set of test fixtures, and removes a stream of
+    &ldquo;go read the code&rdquo; support requests.
+  </p>
+
+  <h3>Postman</h3>
+  <p>TechCart keeps a Postman collection for each shipped feature. The pattern:</p>
+  <ul>
+    <li>one collection per feature;</li>
+    <li>collection or environment variables for the base URL and the auth token;</li>
+    <li>a saved example response against every request;</li>
+    <li>the collection run in CI with newman as a lightweight contract test;</li>
+    <li>the collection published, or its JSON exported into the repository.</li>
+  </ul>
+
+  <h3>OpenAPI alternative</h3>
+  <p>
+    Because the Zod schemas already describe every request and response, an OpenAPI document can be
+    generated from them with zod-to-openapi and served through Swagger UI — one source of truth for
+    validation and documentation both.
+  </p>
+</Prose>

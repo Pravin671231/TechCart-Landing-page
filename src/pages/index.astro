@@ -13,25 +13,14 @@ import ClaudeCode from '../components/ClaudeCode.astro';
 import FolderArchitecture from '../components/FolderArchitecture.astro';
 import NodeVersion from '../components/NodeVersion.astro';
 import EnvVars from '../components/EnvVars.astro';
+import ApiDebugging from '../components/ApiDebugging.astro';
+import EslintPrettierLockfile from '../components/EslintPrettierLockfile.astro';
+import CiCd from '../components/CiCd.astro';
+import Deployment from '../components/Deployment.astro';
+import ApiDesign from '../components/ApiDesign.astro';
+import GitGithub from '../components/GitGithub.astro';
 import Footer from '../components/Footer.astro';
-import { TOC } from '../data/toc';
 import { FEATURES, LANDING_STACK, TECHCART_STACK } from '../data/techcart';
-
-// Sections with real content so far (#3 + #4). The rest stay stubbed for #5
-// (api-debugging…git-github).
-const handled = [
-  'hero',
-  'summary',
-  'features',
-  'suggested-features',
-  'tech-stack',
-  'claude-code',
-  'folder-architecture',
-  'node-version',
-  'env-vars',
-  'get-started',
-];
-const guideStubs = TOC.filter((entry) => !handled.includes(entry.id));
 ---
 
 <BaseLayout>
@@ -86,13 +75,29 @@ const guideStubs = TOC.filter((entry) => !handled.includes(entry.id));
         <EnvVars />
       </Section>
 
-      {guideStubs.map((entry) => (
-        <Section id={entry.id} title={entry.title}>
-          <p class="text-muted">
-            Placeholder for &ldquo;{entry.title}&rdquo;. Real content lands in issues #4&ndash;#5.
-          </p>
-        </Section>
-      ))}
+      <Section id="api-debugging" title="Frontend API Debugging">
+        <ApiDebugging />
+      </Section>
+
+      <Section id="eslint-prettier-lockfile" title="ESLint, Prettier & package-lock">
+        <EslintPrettierLockfile />
+      </Section>
+
+      <Section id="ci-cd" title="CI & CD Pipelines">
+        <CiCd />
+      </Section>
+
+      <Section id="deployment" title="Deployment">
+        <Deployment />
+      </Section>
+
+      <Section id="api-design" title="API Design & Documentation">
+        <ApiDesign />
+      </Section>
+
+      <Section id="git-github" title="Git, GitHub & GitHub Actions">
+        <GitGithub />
+      </Section>
 
       <Section id="get-started" title="Get Started">
         <Footer />

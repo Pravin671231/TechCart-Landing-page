@@ -1,0 +1,51 @@
+---
+import Prose from './Prose.astro';
+import { GIT_CONVENTIONS, ACTIONS_ANATOMY } from '../data/guide';
+
+const anatomyList = 'mt-3 grid gap-x-6 gap-y-2 text-sm sm:grid-cols-[9rem_1fr]';
+---
+
+<Prose class="max-w-none">
+  <h3>Branching</h3>
+  <ul>
+    {GIT_CONVENTIONS.branching.map((rule) => (
+      <li>{rule}</li>
+    ))}
+  </ul>
+
+  <h3>Commits</h3>
+  <ul>
+    {GIT_CONVENTIONS.commits.map((rule) => (
+      <li>{rule}</li>
+    ))}
+  </ul>
+
+  <h3>Pull requests</h3>
+  <ul>
+    {GIT_CONVENTIONS.prs.map((rule) => (
+      <li>{rule}</li>
+    ))}
+  </ul>
+
+  <h3>Repository management</h3>
+  <ul>
+    {GIT_CONVENTIONS.repo.map((rule) => (
+      <li>{rule}</li>
+    ))}
+  </ul>
+
+  <h3>GitHub Actions anatomy</h3>
+  <p>A workflow is a small vocabulary. TechCart's ci.yml uses every part of it:</p>
+  <dl class={anatomyList}>
+    {ACTIONS_ANATOMY.map((entry) => (
+      <div class="contents">
+        <dt class="font-mono text-fg">{entry.term}</dt>
+        <dd class="text-muted">{entry.note}</dd>
+      </div>
+    ))}
+  </dl>
+  <p>
+    Beyond CI, the same mechanism is worth pointing at a stale-issue bot, a labeler, a
+    release-drafter, newman contract tests, and Lighthouse CI on this landing page.
+  </p>
+</Prose>

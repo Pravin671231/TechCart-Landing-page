@@ -1,0 +1,53 @@
+---
+import Prose from './Prose.astro';
+import CodeBlock from './CodeBlock.astro';
+import Callout from './Callout.astro';
+import { CI_YML } from '../data/guide';
+---
+
+<Prose class="max-w-none">
+  <p>
+    TechCart has one GitHub Actions workflow, and it does continuous integration only — no
+    deployment. Here it is, trimmed:
+  </p>
+  <CodeBlock title=".github/workflows/ci.yml" lang="yaml" code={CI_YML} />
+
+  <h3>The three jobs</h3>
+  <p>
+    The workflow triggers on every pull request to main. A concurrency group with cancel-in-progress
+    means a fresh push supersedes an in-flight run. All jobs pin Node with node-version-file
+    pointing at .nvmrc and install with npm ci.
+  </p>
+  <ul>
+    <li>
+      <strong>lint</strong> — runs npm run lint across the whole repo.
+    </li>
+    <li>
+      <strong>test</strong> — a matrix over backend, buyer-app and admin-app. The backend leg caches
+      the mongodb-binaries download and reads the ATLAS_SEARCH_TEST_URI secret.
+    </li>
+    <li>
+      <strong>build</strong> — the same matrix; the buyer-app build gets dummy NEXT_PUBLIC_API_URL
+      and NEXT_PUBLIC_GOOGLE_CLIENT_ID values.
+    </li>
+  </ul>
+  <p>Branch protection marks all three as required, so main only ever receives green code.</p>
+
+  <h3>Why CD is not a GitHub Actions job</h3>
+  <p>
+    Render watches the repository through its render.yaml Blueprint and Vercel watches it natively;
+    both deploy on merge to main on their own. Putting deployment into Actions as well would
+    duplicate that work, require storing platform deploy tokens as CI secrets, and give up the
+    platforms' automatic per-PR preview deployments.
+  </p>
+  <Callout type="tip">
+    Continuous integration lives in GitHub Actions; continuous delivery is owned by the hosting
+    platforms. Keeping them separate is deliberate, not an omission.
+  </Callout>
+
+  <h3>Recommended approach</h3>
+  <p>
+    Keep the CI workflow small and fast — lint, test and build on every pull request — and let the
+    managed platform own delivery through its native git integration.
+  </p>
+</Prose>

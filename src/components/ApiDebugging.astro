@@ -1,0 +1,68 @@
+---
+import Prose from './Prose.astro';
+import CodeBlock from './CodeBlock.astro';
+import { API_FAILURES, API_TRIAGE } from '../data/guide';
+
+const errorExample = `// response body on failure
+{ "success": false, "code": "BRAND_IN_USE", "message": "Brand has products" }
+
+// client — branch on the stable code, not the message
+switch (err.code) {
+  case 'BRAND_IN_USE':
+    return setFieldError('brand', 'Remove its products first');
+  default:
+    return toast(err.message); // human-facing fallback only
+}`;
+---
+
+<Prose class="max-w-none">
+  <h3>Tools</h3>
+  <p>
+    Most API problems are visible in the browser DevTools Network tab: the status code, the timing
+    waterfall, request and response headers, the request payload and the response body. Filter to
+    Fetch/XHR, turn on Preserve log so requests survive a navigation, and use Copy as cURL to replay
+    a request outside the app.
+  </p>
+  <p>
+    RTK Query and React Query both ship devtools that show cache entries, their tags, and what
+    triggered a refetch — the fastest way to explain stale or missing data. MSW (Mock Service
+    Worker) lets you reproduce a specific failing response deterministically inside a test.
+  </p>
+
+  <h3>Reading a response</h3>
+  <p>
+    Every TechCart response has the same shape: success, code and message. On failure, branch the UI
+    on code, which is a stable string; treat message as a human-facing fallback and never parse it
+    for logic.
+  </p>
+  <CodeBlock title="error handling" code={errorExample} />
+
+  <h3>Common failures</h3>
+  <div class="overflow-x-auto rounded-lg border border-border">
+    <table class="w-full border-collapse text-left text-sm">
+      <thead class="bg-surface text-xs tracking-wide text-muted uppercase">
+        <tr>
+          <th class="px-4 py-2 font-medium">Symptom</th>
+          <th class="px-4 py-2 font-medium">Likely cause</th>
+          <th class="px-4 py-2 font-medium">Fix</th>
+        </tr>
+      </thead>
+      <tbody>
+        {API_FAILURES.map((row) => (
+          <tr class="border-t border-border align-top">
+            <td class="px-4 py-2 font-medium text-fg">{row.symptom}</td>
+            <td class="px-4 py-2 text-muted">{row.cause}</td>
+            <td class="px-4 py-2 text-muted">{row.fix}</td>
+          </tr>
+        ))}
+      </tbody>
+    </table>
+  </div>
+
+  <h3>Triage flow</h3>
+  <ol>
+    {API_TRIAGE.map((step) => (
+      <li>{step}</li>
+    ))}
+  </ol>
+</Prose>
