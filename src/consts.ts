@@ -12,3 +12,14 @@ export const SITE_URL = 'https://techcart-landing-page.vercel.app';
 
 /** Canonical GitHub repository for the TechCart application. */
 export const TECHCART_REPO_URL = 'https://github.com/Pravin671231/TechCart';
+
+const TECHCART_BLOB = `${TECHCART_REPO_URL}/blob/main`;
+
+/** Deep links into the TechCart repository's own documentation. */
+export const TECHCART_DOCS = {
+  srs: `${TECHCART_BLOB}/docs/srs/SRS.md`,
+  architecture: `${TECHCART_BLOB}/docs/architecture.md`,
+  buyerAppClaude: `${TECHCART_BLOB}/buyer-app/CLAUDE.md`,
+  adminAppClaude: `${TECHCART_BLOB}/admin-app/CLAUDE.md`,
+  backendClaude: `${TECHCART_BLOB}/backend/CLAUDE.md`,
+} as const;

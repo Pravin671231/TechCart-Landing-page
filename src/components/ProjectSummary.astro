@@ -1,0 +1,69 @@
+---
+import Prose from './Prose.astro';
+import { TECHCART_DOCS } from '../consts';
+import { MILESTONES_SHIPPED, MILESTONES_TOTAL } from '../data/techcart';
+
+const facts = [
+  ['Shape', 'npm-workspaces monorepo, flat structure, three workspaces'],
+  ['Shared core', 'One Express API, one MongoDB Atlas database'],
+  ['Infrastructure', 'Managed platforms only — Vercel, Render, MongoDB Atlas'],
+  ['Process', 'Feature-by-feature against a versioned SRS'],
+  [
+    'Status',
+    `${MILESTONES_SHIPPED} of ${MILESTONES_TOTAL} milestones shipped; NFRs and launch readiness open`,
+  ],
+];
+---
+
+<Prose>
+  <p>
+    TechCart is a production-oriented, <strong>India-first</strong> e-commerce platform. A
+    buyer-facing Next.js storefront and a React/Vite admin console sit on top of a single
+    Node/Express API and a single MongoDB database — no business logic is duplicated between the two
+    front ends.
+  </p>
+  <p>
+    Everything runs on managed infrastructure: the two front ends deploy to Vercel, the backend to
+    Render as a Docker service, and data lives in MongoDB Atlas. Payments go through Razorpay,
+    images through Cloudflare R2, and background work through BullMQ. Redis was removed along the
+    way — rate limiting and caching now use in-memory fallbacks.
+  </p>
+  <p>
+    Work proceeds feature-by-feature against a version-tracked Software Requirements Specification:
+    each feature updates the SRS, becomes a milestone, then an issue, then code. The catalog, auth
+    (Google OAuth + OTP, admin 2FA, bearer-token sessions), cart, orders, Razorpay payments,
+    dashboard and inventory are all shipped; the non-functional requirements and launch readiness
+    are the remaining work.
+  </p>
+</Prose>
+
+<dl class="mt-6 grid gap-x-6 gap-y-2 sm:grid-cols-[10rem_1fr]">
+  {facts.map(([term, detail]) => (
+    <div class="contents">
+      <dt class="text-sm font-semibold text-fg">{term}</dt>
+      <dd class="text-sm text-muted">{detail}</dd>
+    </div>
+  ))}
+</dl>
+
+<p class="mt-6 text-sm text-muted">
+  Deeper detail lives in TechCart's own docs:
+  <a
+    href={TECHCART_DOCS.srs}
+    target="_blank"
+    rel="noopener noreferrer"
+    class="font-medium text-accent underline underline-offset-2"
+  >
+    SRS
+  </a>
+  and
+  <a
+    href={TECHCART_DOCS.architecture}
+    target="_blank"
+    rel="noopener noreferrer"
+    class="font-medium text-accent underline underline-offset-2"
+  >
+    architecture
+  </a>
+  .
+</p>
