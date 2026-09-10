@@ -243,7 +243,7 @@ under each FR — this issue turns the outlines into copy.
 
 ## M1.5 — Guide sections, part 2 (engineering & delivery)
 
-**Status:** In progress — [#5](https://github.com/Pravin671231/TechCart-Landing-page/issues/5) on branch `feature/5-guide-part-2`
+**Status:** Complete — [#5](https://github.com/Pravin671231/TechCart-Landing-page/issues/5) (merged in [#11](https://github.com/Pravin671231/TechCart-Landing-page/pull/11))
 
 ### Context
 
@@ -297,7 +297,7 @@ and the Git workflow. Outlines in `LP-001` §2.
 
 ## M1.6 — Accessibility, performance, SEO polish & deploy
 
-**Status:** Open — [#6](https://github.com/Pravin671231/TechCart-Landing-page/issues/6)
+**Status:** In progress — [#6](https://github.com/Pravin671231/TechCart-Landing-page/issues/6) on branch `feature/6-polish-deploy`. Code polish (SEO tags, sitemap, robots.txt, OG image, a11y pass) in the PR; the Vercel deploy + `v1.0.0` tag follow once the project is connected.
 
 ### Context
 

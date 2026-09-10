@@ -160,8 +160,8 @@ issues under milestone
 | LP-001  | M1 — Landing Page | [#2](https://github.com/Pravin671231/TechCart-Landing-page/issues/2) | `FR-LP-002,003,018,019`; `NFR-LP-001,006` | Complete |
 | LP-001  | M1 — Landing Page | [#3](https://github.com/Pravin671231/TechCart-Landing-page/issues/3) | `FR-LP-001,004,005,006,007,020`           | Complete |
 | LP-001  | M1 — Landing Page | [#4](https://github.com/Pravin671231/TechCart-Landing-page/issues/4) | `FR-LP-008,009,010,011`                   | Complete |
-| LP-001  | M1 — Landing Page | [#5](https://github.com/Pravin671231/TechCart-Landing-page/issues/5) | `FR-LP-012,013,014,015,016,017`           | In progress |
-| LP-001  | M1 — Landing Page | [#6](https://github.com/Pravin671231/TechCart-Landing-page/issues/6) | `NFR-LP-002,003,004,005,007`; deploy      | Open   |
+| LP-001  | M1 — Landing Page | [#5](https://github.com/Pravin671231/TechCart-Landing-page/issues/5) | `FR-LP-012,013,014,015,016,017`           | Complete |
+| LP-001  | M1 — Landing Page | [#6](https://github.com/Pravin671231/TechCart-Landing-page/issues/6) | `NFR-LP-002,003,004,005,007`; deploy      | In progress |
 
 Each issue's status moves Open → Complete as its PR squash-merges to `main`. The
 full requirement-to-issue coverage table lives at the end of

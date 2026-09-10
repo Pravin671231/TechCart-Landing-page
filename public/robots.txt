@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://techcart-landing-page.vercel.app/sitemap-index.xml
