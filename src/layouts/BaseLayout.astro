@@ -74,6 +74,9 @@ const imageURL = new URL(image, Astro.site ?? Astro.url);
     <main id="main" tabindex="-1">
       <slot />
     </main>
+    <script>
+      import '../scripts/theme.ts';
+    </script>
     <footer class="mx-auto max-w-6xl px-4 py-8 text-xs text-muted">
       <p>
         Built with Astro and Tailwind CSS, deployed on Vercel. It presents the public

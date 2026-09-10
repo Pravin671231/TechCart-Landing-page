@@ -1,0 +1,60 @@
+---
+import { NAV } from '../data/toc';
+import ThemeToggle from './ThemeToggle.astro';
+---
+
+<div class="sticky top-0 z-40 flex h-14 items-center justify-between gap-4 border-b border-border bg-page/80 backdrop-blur supports-[backdrop-filter]:bg-page/70 lg:hidden">
+  <a href="#overview" class="text-sm font-semibold tracking-tight text-fg">
+    Tech<span class="text-accent">Cart</span>
+  </a>
+
+  <div class="flex items-center gap-1">
+    <ThemeToggle />
+
+    <details class="menu-drawer relative">
+      <summary class="cursor-pointer list-none rounded-md px-3 py-1.5 text-sm font-medium text-fg select-none [&::-webkit-details-marker]:hidden">
+        Menu
+      </summary>
+      <div class="absolute top-full right-0 z-50 mt-2 w-56 rounded-lg border border-border bg-surface p-2 shadow-lg">
+        <ol class="text-sm">
+          {NAV.map((entry) => (
+            <li>
+              <a
+                href={`#${entry.id}`}
+                data-toc-link={entry.id}
+                class="toc-link block rounded px-2 py-1.5 text-muted transition-colors hover:text-fg"
+              >
+                {entry.title}
+              </a>
+            </li>
+          ))}
+        </ol>
+      </div>
+    </details>
+  </div>
+</div>
+
+<style>
+  .toc-link.is-active {
+    color: var(--fg);
+    font-weight: 500;
+  }
+</style>
+
+<script>
+  const details = document.querySelector<HTMLDetailsElement>('.menu-drawer');
+
+  // Collapse the disclosure after picking a destination.
+  details?.querySelectorAll('a[href^="#"]').forEach((link) => {
+    link.addEventListener('click', () => {
+      details.open = false;
+    });
+  });
+
+  details?.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape' && details.open) {
+      details.open = false;
+      details.querySelector('summary')?.focus();
+    }
+  });
+</script>
