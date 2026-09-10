@@ -149,14 +149,23 @@ from the TechCart SRS so the two projects stay consistent):
 
 ## 5. Traceability Matrix
 
-| Feature | Milestone         | GitHub Issue(s) | Status       |
-| ------- | ----------------- | --------------- | ------------ |
-| LP-001  | M1 — Landing Page | `#TBD`          | Spec drafted |
+The milestone roadmap is [`../milestone.md`](../milestone.md); the issue drafts
+are [`../issues.md`](../issues.md). `LP-001` is delivered as six work-package
+issues under milestone **M1 — Landing Page**:
 
-Issues are filed against milestone **M1 — Landing Page** once this SRS is
-approved. Each functional requirement group (hero, TOC, each guide section) may
-become its own issue, or the whole page may ship as a single issue — decided at
-milestone-planning time.
+| Feature | Milestone         | Issue draft | Requirements                                   | Status |
+| ------- | ----------------- | ----------- | -------------------------------------------- | ------ |
+| LP-001  | M1 — Landing Page | `M1.1`      | scaffold & tooling (`LP-001` §2.4)             | Draft  |
+| LP-001  | M1 — Landing Page | `M1.2`      | `FR-LP-002,003,018,019`; `NFR-LP-001,006`      | Draft  |
+| LP-001  | M1 — Landing Page | `M1.3`      | `FR-LP-001,004,005,006,007,020`               | Draft  |
+| LP-001  | M1 — Landing Page | `M1.4`      | `FR-LP-008,009,010,011`                       | Draft  |
+| LP-001  | M1 — Landing Page | `M1.5`      | `FR-LP-012,013,014,015,016,017`               | Draft  |
+| LP-001  | M1 — Landing Page | `M1.6`      | `NFR-LP-002,003,004,005,007`; deploy           | Draft  |
+
+Each draft is opened as a real GitHub Issue with `gh issue create` when work
+starts; its status here moves Draft → Open → Complete. The full
+requirement-to-issue coverage table lives at the end of
+[`../issues.md`](../issues.md).
 
 ---
 
@@ -168,13 +177,13 @@ This project follows TechCart's five-step, spec-driven flow:
 Feature Selection → SRS Update → Milestone Creation → Issue Filing → Code Implementation
 ```
 
-| Step | Deliverable                                   | Status update              |
-| ---- | -------------------------------------------- | -------------------------- |
-| 1    | Decision to build the landing page           | —                          |
-| 2    | This SRS + `features/LP-001-landing-page.md`  | "Spec drafted"             |
-| 3    | GitHub milestone **M1 — Landing Page**        | Feature indexed            |
-| 4    | Linked issue(s), branch `feature/<n>-<scope>` | "Issues open"              |
-| 5    | PR squash-merged to `main`; acceptance criteria validated | "Complete (v1.0.0)" |
+| Step | Deliverable                                                        | Status update       |
+| ---- | ----------------------------------------------------------------- | ------------------- |
+| 1    | Decision to build the landing page                                | —                   |
+| 2    | This SRS + `features/LP-001-landing-page.md`                       | "Spec drafted"      |
+| 3    | Milestone **M1 — Landing Page** in [`../milestone.md`](../milestone.md) | Feature indexed |
+| 4    | Issue drafts `M1.1`–`M1.6` in [`../issues.md`](../issues.md); branch `feature/<n>-<scope>` | "Issues open" |
+| 5    | PR squash-merged to `main`; acceptance criteria validated          | "Complete (v1.0.0)" |
 
 **Conventions (inherited from TechCart, adjusted for this repo):**
 
