@@ -1,0 +1,44 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { TECHCART_REPO_URL } from '../consts';
+
+// Scaffold placeholder (issue #1). Real page sections land in issues #3–#5.
+const swatches = [
+  { label: 'bg', var: '--bg' },
+  { label: 'surface', var: '--surface' },
+  { label: 'fg', var: '--fg' },
+  { label: 'accent', var: '--accent' },
+  { label: 'accent-2', var: '--accent-2' },
+];
+---
+
+<BaseLayout>
+  <section style="max-width: 42rem; margin: 0 auto; padding: 4rem 1.5rem;">
+    <p style="color: var(--muted); font-size: 0.875rem; letter-spacing: 0.05em; text-transform: uppercase;">
+      Scaffold · issue #1
+    </p>
+    <h1 style="font-size: 2.25rem; line-height: 1.2; margin: 0.5rem 0 1rem;">TechCart</h1>
+    <p style="color: var(--muted); margin: 0 0 2rem;">
+      Landing page project scaffold. Astro + Tailwind v4, themed shell only — page sections are
+      built in later issues. Source:
+      <a href={TECHCART_REPO_URL} style="color: var(--accent);">
+        github.com/Pravin671231/TechCart
+      </a>
+      .
+    </p>
+
+    <div style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
+      {swatches.map((s) => (
+        <div
+          style={`border: 1px solid var(--border); border-radius: 0.5rem; padding: 0.75rem 1rem; background: var(${s.var}); color: var(--fg); min-width: 6rem;`}
+        >
+          <span style="font-size: 0.75rem; color: var(--muted);">{s.label}</span>
+        </div>
+      ))}
+    </div>
+
+    <p style="color: var(--muted); font-size: 0.875rem; margin-top: 2rem;">
+      Switch your OS appearance between light and dark — these swatches and the page follow it.
+    </p>
+  </section>
+</BaseLayout>
