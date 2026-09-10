@@ -36,7 +36,7 @@ style; each maps to one GitHub issue number.
 
 ## M1.1 — Project scaffold & tooling
 
-**Status:** Open — [#1](https://github.com/Pravin671231/TechCart-Landing-page/issues/1)
+**Status:** In progress — [#1](https://github.com/Pravin671231/TechCart-Landing-page/issues/1) on branch `feature/1-scaffold`
 
 ### Context
 

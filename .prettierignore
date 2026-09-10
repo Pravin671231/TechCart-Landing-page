@@ -1,0 +1,11 @@
+# Build output
+dist/
+.astro/
+.vercel/
+
+# Dependencies + lockfile
+node_modules/
+package-lock.json
+
+# Hand-authored Markdown (SRS, milestone, issues, README) — kept as written
+**/*.md

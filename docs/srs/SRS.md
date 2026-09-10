@@ -156,7 +156,7 @@ issues under milestone
 
 | Feature | Milestone         | Issue | Requirements                                   | Status |
 | ------- | ----------------- | ----- | -------------------------------------------- | ------ |
-| LP-001  | M1 — Landing Page | [#1](https://github.com/Pravin671231/TechCart-Landing-page/issues/1) | scaffold & tooling (`LP-001` §2.4)        | Open   |
+| LP-001  | M1 — Landing Page | [#1](https://github.com/Pravin671231/TechCart-Landing-page/issues/1) | scaffold & tooling (`LP-001` §2.4)        | In progress |
 | LP-001  | M1 — Landing Page | [#2](https://github.com/Pravin671231/TechCart-Landing-page/issues/2) | `FR-LP-002,003,018,019`; `NFR-LP-001,006` | Open   |
 | LP-001  | M1 — Landing Page | [#3](https://github.com/Pravin671231/TechCart-Landing-page/issues/3) | `FR-LP-001,004,005,006,007,020`           | Open   |
 | LP-001  | M1 — Landing Page | [#4](https://github.com/Pravin671231/TechCart-Landing-page/issues/4) | `FR-LP-008,009,010,011`                   | Open   |
