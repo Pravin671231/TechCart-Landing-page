@@ -158,8 +158,8 @@ issues under milestone
 | ------- | ----------------- | ----- | -------------------------------------------- | ------ |
 | LP-001  | M1 — Landing Page | [#1](https://github.com/Pravin671231/TechCart-Landing-page/issues/1) | scaffold & tooling (`LP-001` §2.4)        | Complete |
 | LP-001  | M1 — Landing Page | [#2](https://github.com/Pravin671231/TechCart-Landing-page/issues/2) | `FR-LP-002,003,018,019`; `NFR-LP-001,006` | Complete |
-| LP-001  | M1 — Landing Page | [#3](https://github.com/Pravin671231/TechCart-Landing-page/issues/3) | `FR-LP-001,004,005,006,007,020`           | In progress |
-| LP-001  | M1 — Landing Page | [#4](https://github.com/Pravin671231/TechCart-Landing-page/issues/4) | `FR-LP-008,009,010,011`                   | Open   |
+| LP-001  | M1 — Landing Page | [#3](https://github.com/Pravin671231/TechCart-Landing-page/issues/3) | `FR-LP-001,004,005,006,007,020`           | Complete |
+| LP-001  | M1 — Landing Page | [#4](https://github.com/Pravin671231/TechCart-Landing-page/issues/4) | `FR-LP-008,009,010,011`                   | In progress |
 | LP-001  | M1 — Landing Page | [#5](https://github.com/Pravin671231/TechCart-Landing-page/issues/5) | `FR-LP-012,013,014,015,016,017`           | Open   |
 | LP-001  | M1 — Landing Page | [#6](https://github.com/Pravin671231/TechCart-Landing-page/issues/6) | `NFR-LP-002,003,004,005,007`; deploy      | Open   |
 

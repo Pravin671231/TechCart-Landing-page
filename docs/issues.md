@@ -145,7 +145,7 @@ theme toggle, and the shared content primitives (`Section`, `Prose`, `CodeBlock`
 
 ## M1.3 — Product sections
 
-**Status:** In progress — [#3](https://github.com/Pravin671231/TechCart-Landing-page/issues/3) on branch `feature/3-product-sections`
+**Status:** Complete — [#3](https://github.com/Pravin671231/TechCart-Landing-page/issues/3) (merged in [#9](https://github.com/Pravin671231/TechCart-Landing-page/pull/9))
 
 ### Context
 
@@ -193,7 +193,7 @@ All TechCart facts come from one typed data module.
 
 ## M1.4 — Guide sections, part 1 (Claude Code & repo structure)
 
-**Status:** Open — [#4](https://github.com/Pravin671231/TechCart-Landing-page/issues/4)
+**Status:** In progress — [#4](https://github.com/Pravin671231/TechCart-Landing-page/issues/4) on branch `feature/4-guide-part-1`
 
 ### Context
 

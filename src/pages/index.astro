@@ -9,13 +9,28 @@ import ProjectSummary from '../components/ProjectSummary.astro';
 import FeatureCard from '../components/FeatureCard.astro';
 import SuggestedFeatures from '../components/SuggestedFeatures.astro';
 import StackTable from '../components/StackTable.astro';
+import ClaudeCode from '../components/ClaudeCode.astro';
+import FolderArchitecture from '../components/FolderArchitecture.astro';
+import NodeVersion from '../components/NodeVersion.astro';
+import EnvVars from '../components/EnvVars.astro';
 import Footer from '../components/Footer.astro';
 import { TOC } from '../data/toc';
 import { FEATURES, LANDING_STACK, TECHCART_STACK } from '../data/techcart';
 
-// Sections handled here in #3; the rest stay stubbed for #4 (claude-code…env-vars)
-// and #5 (api-debugging…git-github).
-const handled = ['hero', 'summary', 'features', 'suggested-features', 'tech-stack', 'get-started'];
+// Sections with real content so far (#3 + #4). The rest stay stubbed for #5
+// (api-debugging…git-github).
+const handled = [
+  'hero',
+  'summary',
+  'features',
+  'suggested-features',
+  'tech-stack',
+  'claude-code',
+  'folder-architecture',
+  'node-version',
+  'env-vars',
+  'get-started',
+];
 const guideStubs = TOC.filter((entry) => !handled.includes(entry.id));
 ---
 
@@ -53,6 +68,22 @@ const guideStubs = TOC.filter((entry) => !handled.includes(entry.id));
           rows={LANDING_STACK}
         />
         <StackTable caption="TechCart" head={['Layer', 'Technology']} rows={TECHCART_STACK} />
+      </Section>
+
+      <Section id="claude-code" title="How to Handle Claude Code">
+        <ClaudeCode />
+      </Section>
+
+      <Section id="folder-architecture" title="Folder Architecture">
+        <FolderArchitecture />
+      </Section>
+
+      <Section id="node-version" title=".node-version & .nvmrc">
+        <NodeVersion />
+      </Section>
+
+      <Section id="env-vars" title="Environment Variables">
+        <EnvVars />
       </Section>
 
       {guideStubs.map((entry) => (
