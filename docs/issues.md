@@ -297,7 +297,7 @@ and the Git workflow. Outlines in `LP-001` §2.
 
 ## M1.6 — Accessibility, performance, SEO polish & deploy
 
-**Status:** In progress — [#6](https://github.com/Pravin671231/TechCart-Landing-page/issues/6) on branch `feature/6-polish-deploy`. Code polish (SEO tags, sitemap, robots.txt, OG image, a11y pass) in the PR; the Vercel deploy + `v1.0.0` tag follow once the project is connected.
+**Status:** Complete — [#6](https://github.com/Pravin671231/TechCart-Landing-page/issues/6) (merged in [#12](https://github.com/Pravin671231/TechCart-Landing-page/pull/12); released [`v1.0.0`](https://github.com/Pravin671231/TechCart-Landing-page/releases/tag/v1.0.0)). Remaining operational step: connect the repo to Vercel; the `site` URL stays the `techcart-landing-page.vercel.app` placeholder until confirmed.
 
 ### Context
 
