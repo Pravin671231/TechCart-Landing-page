@@ -457,7 +457,7 @@ None (first M2 issue).
 
 ## M2.2 — App-shell layout + Overview
 
-**Status:** Open — [#17](https://github.com/Pravin671231/TechCart-Landing-page/issues/17)
+**Status:** Complete — [#17](https://github.com/Pravin671231/TechCart-Landing-page/issues/17) (merged in [#24](https://github.com/Pravin671231/TechCart-Landing-page/pull/24))
 
 ### Context
 

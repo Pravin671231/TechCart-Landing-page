@@ -43,9 +43,12 @@ is the contract, not notes:
 - `docs/architecture.md` — build/deploy rationale.
 
 **Single-source data modules (`src/data/`).** Components never hardcode content:
-- `toc.ts` — ordered `[{ id, title }]`; the only source for the section nav, the
-  mobile nav, scroll-spy, and section anchor ids. Section ids here must match the
-  `<section id>` in `src/pages/index.astro`.
+- `toc.ts` — exports `NAV`, the ordered `[{ id, title }]` app-shell nav (four
+  items: overview/casestudy/user-manual/features) — the only source for
+  `LeftSidenav` and `TopBar`'s menu drawer. `casestudy`/`user-manual` don't
+  resolve to a section yet; `#documentation` lands in M2.3 (issue #18).
+- `apps.ts` — Buyer/Admin copy (title, description, repo/demo URLs) for the
+  Overview toggle, sourced from `WORKSPACES` (`techcart.ts`) + `consts.ts`.
 - `techcart.ts` — every TechCart claim (stack, milestones, features, data model),
   **each value carrying a comment citing its `SRS.md` Appendix A source**. Add new
   facts to Appendix A first, then here.
@@ -64,7 +67,10 @@ the self-hosted Inter variable font) that still track the runtime theme. Use
 those utilities — don't reach for raw Tailwind color classes, and don't add a
 color literal anywhere outside `brand-kit.json`. A pre-paint inline script in
 `src/layouts/BaseLayout.astro` applies a stored `localStorage` theme before
-first paint; the toggle button + its logic live in `src/components/Nav.astro`.
+first paint; the toggle button markup + its `<style>` live in
+`src/components/ThemeToggle.astro` (rendered once each from `LeftSidenav` and
+`TopBar`), and its logic in `src/scripts/theme.ts` rebinds every
+`.theme-toggle` instance.
 Tailwind v4 is wired via `@tailwindcss/vite` in `astro.config.mjs` with CSS-first
 config (`@import 'tailwindcss'` in `global.css`) — there is no `tailwind.config`.
 
@@ -73,15 +79,19 @@ enhancement — the page must be fully usable with JavaScript disabled and by
 keyboard alone:
 - `scrollspy.ts` — `IntersectionObserver` marks the active `[data-toc-link]` and
   reveals `.section-enter` sections; no-JS fallback is a plain anchor list.
-- theme toggle (in `Nav.astro`) and the delegated copy-button handler (in
-  `CodeBlock.astro`) are the only other scripts.
+- `theme.ts` (theme toggle), `app-toggle.ts` (Overview's Buyer/Admin toggle),
+  and the delegated copy-button handler (in `CodeBlock.astro`) are the only
+  other scripts.
 `prefers-reduced-motion` must disable all non-essential animation.
 
-**Page assembly.** `src/pages/index.astro` imports `BaseLayout` and composes every
-section in `toc.ts` order. `BaseLayout.astro` owns `<head>` (meta/OG/Twitter,
-canonical, sitemap, favicons, theme-color) and the skip link. `@astrojs/sitemap`
-generates `sitemap-index.xml`; `astro.config.mjs` `site` is a placeholder Vercel
-URL until the project is connected.
+**Page assembly.** `src/pages/index.astro` imports `BaseLayout` and renders the
+app-shell grid: `LeftSidenav` (sticky, `lg`+) + a main column with `TopBar`
+(`lg:hidden` menu drawer), `Overview`, then the M1 content sections in `Section`
+wrappers (still flat below Overview — M2.3/M2.4 move them into tabs).
+`BaseLayout.astro` owns `<head>` (meta/OG/Twitter, canonical, sitemap, favicons,
+theme-color) and the skip link. `@astrojs/sitemap` generates `sitemap-index.xml`;
+`astro.config.mjs` `site` is a placeholder Vercel URL until the project is
+connected.
 
 ## Conventions
 
@@ -114,9 +124,10 @@ URL until the project is connected.
 ## In flight — M2 Redesign
 
 `docs/milestone.md` + `docs/issues.md` (M2.1–M2.4) describe a redesign to an
-app-shell. **M2.1 (Ocean Royale brand kit, issue #16) is merged** —
-`src/data/brand-kit.json` is now the single source of truth for the design
-tokens; see the Design tokens & theming section above. Remaining: a
-`container-fluid` two-column grid with a sticky full-height left sidenav
-(M2.2), an 80dvh Overview with a Buyer/Admin toggle (M2.2), and a tabbed
-documentation area (M2.3–M2.4). The feature spec `LP-002` is not yet written.
+app-shell. **M2.1 (Ocean Royale brand kit, issue #16) and M2.2 (app-shell
+layout + Overview, issue #17) are merged** — see the Design tokens & theming
+and Page assembly sections above. Remaining: a tabbed documentation area
+(Case Study · User Manual · Features) replacing the flat M1 sections (M2.3),
+and migrating M1's 16 sections into it (M2.4); `#casestudy`/`#user-manual`
+sidenav links are dead until then. The feature spec `LP-002` is not yet
+written.

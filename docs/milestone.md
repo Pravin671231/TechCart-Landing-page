@@ -122,7 +122,7 @@ One issue per package. Full drafts in [`issues.md`](issues.md). Order is strict:
 | Issue | Package                          | Requirements covered              |
 | ----- | ------------------------------- | -------------------------------- |
 | [#16](https://github.com/Pravin671231/TechCart-Landing-page/issues/16) M2.1 | Ocean Royale brand kit — merged  | `FR-LP-021`                       |
-| [#17](https://github.com/Pravin671231/TechCart-Landing-page/issues/17) M2.2 | App-shell layout + Overview      | `FR-LP-022`, `023`, `024`, `027` |
+| [#17](https://github.com/Pravin671231/TechCart-Landing-page/issues/17) M2.2 | App-shell layout + Overview — merged | `FR-LP-022`, `023`, `024`, `027` |
 | [#18](https://github.com/Pravin671231/TechCart-Landing-page/issues/18) M2.3 | Documentation tabs               | `FR-LP-025`, `027`               |
 | [#19](https://github.com/Pravin671231/TechCart-Landing-page/issues/19) M2.4 | Migrate M1 sections into tabs     | `FR-LP-026`                       |
 
@@ -132,7 +132,7 @@ One issue per package. Full drafts in [`issues.md`](issues.md). Order is strict:
       `--bg` / `--surface` / `--fg` / … tokens match it in both themes.
 - [ ] The `container-fluid` grid, sticky full-height sidenav, 80dvh Overview, and
       tabbed docs area are all in place and match `LP-002` §6.
-- [ ] The Buyer / Admin toggle swaps the Overview title, description, and both
+- [x] The Buyer / Admin toggle swaps the Overview title, description, and both
       action links with no page reload; the Buyer view renders server-side.
 - [ ] Every M1 section is still present under one of the three tabs; exactly one
       `<h1>` (in Overview) and a correct heading outline per panel.
