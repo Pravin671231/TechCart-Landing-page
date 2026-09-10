@@ -1,0 +1,56 @@
+---
+interface Props {
+  /** Raw code. If omitted, the default slot is used instead. */
+  code?: string;
+  /** Language label shown in the title bar. */
+  lang?: string;
+  /** Optional filename / title shown in the title bar. */
+  title?: string;
+}
+
+const { code, lang, title } = Astro.props;
+const label = title ?? lang ?? 'code';
+---
+
+<figure class="code-block my-5 overflow-hidden rounded-lg border border-border bg-surface text-fg">
+  <figcaption class="flex items-center justify-between border-b border-border px-3 py-1.5 text-xs text-muted">
+    <span class="font-mono">{label}</span>
+    <button
+      type="button"
+      class="copy-btn rounded px-2 py-1 font-medium text-muted transition-colors hover:text-fg"
+      aria-label="Copy code to clipboard"
+    >
+      <span class="copy-label">Copy</span>
+    </button>
+  </figcaption>
+  <pre class="overflow-x-auto p-4 text-sm leading-relaxed"><code class="font-mono">{code ?? <slot />}</code></pre>
+</figure>
+
+<script>
+  // One delegated handler for every CodeBlock on the page.
+  document.addEventListener('click', async (event) => {
+    const target = event.target as HTMLElement;
+    const btn = target.closest<HTMLButtonElement>('.copy-btn');
+    if (!btn) return;
+
+    const block = btn.closest('.code-block');
+    const codeEl = block?.querySelector('code');
+    if (!codeEl) return;
+
+    const label = btn.querySelector('.copy-label');
+    try {
+      await navigator.clipboard.writeText(codeEl.textContent ?? '');
+      if (label) {
+        const prev = label.textContent;
+        label.textContent = 'Copied';
+        btn.setAttribute('data-copied', 'true');
+        window.setTimeout(() => {
+          label.textContent = prev;
+          btn.removeAttribute('data-copied');
+        }, 1500);
+      }
+    } catch {
+      if (label) label.textContent = 'Press Ctrl+C';
+    }
+  });
+</script>

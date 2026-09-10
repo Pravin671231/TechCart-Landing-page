@@ -1,44 +1,83 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import Nav from '../components/Nav.astro';
+import TocSidebar from '../components/TocSidebar.astro';
+import MobileNav from '../components/MobileNav.astro';
+import Section from '../components/Section.astro';
+import CodeBlock from '../components/CodeBlock.astro';
+import Callout from '../components/Callout.astro';
+import { TOC } from '../data/toc';
 import { TECHCART_REPO_URL } from '../consts';
 
-// Scaffold placeholder (issue #1). Real page sections land in issues #3–#5.
-const swatches = [
-  { label: 'bg', var: '--bg' },
-  { label: 'surface', var: '--surface' },
-  { label: 'fg', var: '--fg' },
-  { label: 'accent', var: '--accent' },
-  { label: 'accent-2', var: '--accent-2' },
-];
+// Everything below "hero" is a stub for now — issues #3–#5 fill these in.
+const stubs = TOC.filter((entry) => entry.id !== 'hero');
 ---
 
 <BaseLayout>
-  <section style="max-width: 42rem; margin: 0 auto; padding: 4rem 1.5rem;">
-    <p style="color: var(--muted); font-size: 0.875rem; letter-spacing: 0.05em; text-transform: uppercase;">
-      Scaffold · issue #1
-    </p>
-    <h1 style="font-size: 2.25rem; line-height: 1.2; margin: 0.5rem 0 1rem;">TechCart</h1>
-    <p style="color: var(--muted); margin: 0 0 2rem;">
-      Landing page project scaffold. Astro + Tailwind v4, themed shell only — page sections are
-      built in later issues. Source:
-      <a href={TECHCART_REPO_URL} style="color: var(--accent);">
-        github.com/Pravin671231/TechCart
-      </a>
-      .
-    </p>
+  <Nav />
 
-    <div style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
-      {swatches.map((s) => (
-        <div
-          style={`border: 1px solid var(--border); border-radius: 0.5rem; padding: 0.75rem 1rem; background: var(${s.var}); color: var(--fg); min-width: 6rem;`}
-        >
-          <span style="font-size: 0.75rem; color: var(--muted);">{s.label}</span>
+  <div class="mx-auto max-w-6xl px-4 lg:grid lg:grid-cols-[15rem_minmax(0,1fr)] lg:gap-12">
+    <TocSidebar />
+
+    <div class="min-w-0">
+      <MobileNav />
+
+      <section id="hero" tabindex="-1" class="section-enter scroll-mt-20 py-16 md:py-24">
+        <p class="text-xs font-medium tracking-widest text-muted uppercase">Landing page · shell</p>
+        <h1 class="mt-3 text-4xl font-bold tracking-tight text-fg md:text-5xl">
+          Tech
+          <span class="bg-gradient-to-r from-accent to-accent-2 bg-clip-text text-transparent">
+            Cart
+          </span>
+        </h1>
+        <p class="mt-4 max-w-xl text-lg text-muted">
+          Production, India-first e-commerce — a Next.js storefront and a React admin console on one
+          Express + MongoDB API. This page is the structural shell; content lands in issues #3–#5.
+        </p>
+        <div class="mt-6 flex flex-wrap gap-3">
+          <a
+            href={TECHCART_REPO_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="rounded-md bg-accent px-4 py-2 text-sm font-medium text-accent-fg hover:opacity-90"
+          >
+            View on GitHub
+          </a>
+          <a
+            href="#summary"
+            class="rounded-md border border-border px-4 py-2 text-sm font-medium text-fg hover:bg-surface"
+          >
+            Read the guide
+          </a>
         </div>
+      </section>
+
+      {stubs.map((entry) => (
+        <Section id={entry.id} title={entry.title}>
+          <p class="text-muted">
+            Placeholder for &ldquo;{entry.title}&rdquo;. Real content lands in issues #3&ndash;#5.
+          </p>
+
+          {entry.id === 'claude-code' && (
+            <div class="mt-4">
+              <Callout type="note">
+                A <code>note</code> callout — neutral context or an aside.
+              </Callout>
+              <Callout type="tip">
+                A <code>tip</code> callout — a recommended practice.
+              </Callout>
+              <Callout type="warning">
+                A <code>warning</code> callout — never commit a real <code>.env</code> file.
+              </Callout>
+              <CodeBlock lang="bash" title="terminal" code={'npm install\nnpm run dev'} />
+            </div>
+          )}
+        </Section>
       ))}
     </div>
-
-    <p style="color: var(--muted); font-size: 0.875rem; margin-top: 2rem;">
-      Switch your OS appearance between light and dark — these swatches and the page follow it.
-    </p>
-  </section>
+  </div>
 </BaseLayout>
+
+<script>
+  import '../scripts/scrollspy.ts';
+</script>
