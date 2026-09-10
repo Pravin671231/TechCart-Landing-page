@@ -1,31 +1,42 @@
 # Issue Drafts — TechCart Landing Page
 
-Draft issues for milestone **M1 — Landing Page**. Companion to
-[`milestone.md`](milestone.md), [`srs/SRS.md`](srs/SRS.md), and the feature spec
-[`srs/features/LP-001-landing-page.md`](srs/features/LP-001-landing-page.md).
+Issue drafts for milestone
+[**M1 — Landing Page**](https://github.com/Pravin671231/TechCart-Landing-page/milestone/1).
+Companion to [`milestone.md`](milestone.md), [`srs/SRS.md`](srs/SRS.md), and the
+feature spec [`srs/features/LP-001-landing-page.md`](srs/features/LP-001-landing-page.md).
+
+All six drafts are now open as GitHub issues
+[#1–#6](https://github.com/Pravin671231/TechCart-Landing-page/issues?q=is%3Aissue+milestone%3A%22M1+%E2%80%94+Landing+Page%22).
+The full drafts are kept here as the working checklist; GitHub carries the live
+status.
 
 ## Workflow
 
 1. **Draft here** — full context, task checklist, and acceptance criteria.
 2. **Open on GitHub** —
-   `gh issue create --milestone "M1 — Landing Page" --title "M1.x — <title>"`,
-   pasting the draft body. The issue gets a real number.
+   `gh issue create --milestone "M1 — Landing Page" --title "M1.x — <title>" --body-file <draft>`.
 3. **Work it** — branch `feature/<issue-number>-<scope>` off `main`; squash-merge
    the PR back; delete the branch.
-4. **Track** — status moves in [`srs/SRS.md`](srs/SRS.md) §5 and
+4. **Track** — status moves here, in [`srs/SRS.md`](srs/SRS.md) §5, and in
    [`milestone.md`](milestone.md): Draft → Open (`#N`) → Complete.
 
-Once an issue is opened, trim its draft below to a one-line pointer
-(`M1.x → #N (opened)`), the way the TechCart repo does.
-
 Issue IDs are milestone-scoped (`M1.1` … `M1.6`), matching TechCart's `M2.13`
-style.
+style; each maps to one GitHub issue number.
+
+| Draft  | GitHub issue |
+| ------ | ------------ |
+| M1.1   | [#1](https://github.com/Pravin671231/TechCart-Landing-page/issues/1) |
+| M1.2   | [#2](https://github.com/Pravin671231/TechCart-Landing-page/issues/2) |
+| M1.3   | [#3](https://github.com/Pravin671231/TechCart-Landing-page/issues/3) |
+| M1.4   | [#4](https://github.com/Pravin671231/TechCart-Landing-page/issues/4) |
+| M1.5   | [#5](https://github.com/Pravin671231/TechCart-Landing-page/issues/5) |
+| M1.6   | [#6](https://github.com/Pravin671231/TechCart-Landing-page/issues/6) |
 
 ---
 
 ## M1.1 — Project scaffold & tooling
 
-**Status:** Draft
+**Status:** Open — [#1](https://github.com/Pravin671231/TechCart-Landing-page/issues/1)
 
 ### Context
 
@@ -77,7 +88,7 @@ None.
 
 ## M1.2 — Page shell: nav, TOC sidebar, scroll-spy, theme toggle
 
-**Status:** Draft
+**Status:** Open — [#2](https://github.com/Pravin671231/TechCart-Landing-page/issues/2)
 
 ### Context
 
@@ -134,7 +145,7 @@ theme toggle, and the shared content primitives (`Section`, `Prose`, `CodeBlock`
 
 ## M1.3 — Product sections
 
-**Status:** Draft
+**Status:** Open — [#3](https://github.com/Pravin671231/TechCart-Landing-page/issues/3)
 
 ### Context
 
@@ -182,7 +193,7 @@ All TechCart facts come from one typed data module.
 
 ## M1.4 — Guide sections, part 1 (Claude Code & repo structure)
 
-**Status:** Draft
+**Status:** Open — [#4](https://github.com/Pravin671231/TechCart-Landing-page/issues/4)
 
 ### Context
 
@@ -232,7 +243,7 @@ under each FR — this issue turns the outlines into copy.
 
 ## M1.5 — Guide sections, part 2 (engineering & delivery)
 
-**Status:** Draft
+**Status:** Open — [#5](https://github.com/Pravin671231/TechCart-Landing-page/issues/5)
 
 ### Context
 
@@ -286,7 +297,7 @@ and the Git workflow. Outlines in `LP-001` §2.
 
 ## M1.6 — Accessibility, performance, SEO polish & deploy
 
-**Status:** Draft
+**Status:** Open — [#6](https://github.com/Pravin671231/TechCart-Landing-page/issues/6)
 
 ### Context
 
@@ -339,7 +350,9 @@ see the Definition of Done in [`milestone.md`](milestone.md).
 
 ## Coverage check
 
-Every requirement in `LP-001` maps to exactly one issue.
+Every requirement in `LP-001` maps to exactly one issue. Draft IDs map to GitHub
+issues one-to-one: `M1.1` → #1, `M1.2` → #2, `M1.3` → #3, `M1.4` → #4, `M1.5` → #5,
+`M1.6` → #6.
 
 ### Functional requirements
 

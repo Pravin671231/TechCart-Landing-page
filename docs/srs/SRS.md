@@ -151,20 +151,20 @@ from the TechCart SRS so the two projects stay consistent):
 
 The milestone roadmap is [`../milestone.md`](../milestone.md); the issue drafts
 are [`../issues.md`](../issues.md). `LP-001` is delivered as six work-package
-issues under milestone **M1 — Landing Page**:
+issues under milestone
+[**M1 — Landing Page**](https://github.com/Pravin671231/TechCart-Landing-page/milestone/1):
 
-| Feature | Milestone         | Issue draft | Requirements                                   | Status |
-| ------- | ----------------- | ----------- | -------------------------------------------- | ------ |
-| LP-001  | M1 — Landing Page | `M1.1`      | scaffold & tooling (`LP-001` §2.4)             | Draft  |
-| LP-001  | M1 — Landing Page | `M1.2`      | `FR-LP-002,003,018,019`; `NFR-LP-001,006`      | Draft  |
-| LP-001  | M1 — Landing Page | `M1.3`      | `FR-LP-001,004,005,006,007,020`               | Draft  |
-| LP-001  | M1 — Landing Page | `M1.4`      | `FR-LP-008,009,010,011`                       | Draft  |
-| LP-001  | M1 — Landing Page | `M1.5`      | `FR-LP-012,013,014,015,016,017`               | Draft  |
-| LP-001  | M1 — Landing Page | `M1.6`      | `NFR-LP-002,003,004,005,007`; deploy           | Draft  |
+| Feature | Milestone         | Issue | Requirements                                   | Status |
+| ------- | ----------------- | ----- | -------------------------------------------- | ------ |
+| LP-001  | M1 — Landing Page | [#1](https://github.com/Pravin671231/TechCart-Landing-page/issues/1) | scaffold & tooling (`LP-001` §2.4)        | Open   |
+| LP-001  | M1 — Landing Page | [#2](https://github.com/Pravin671231/TechCart-Landing-page/issues/2) | `FR-LP-002,003,018,019`; `NFR-LP-001,006` | Open   |
+| LP-001  | M1 — Landing Page | [#3](https://github.com/Pravin671231/TechCart-Landing-page/issues/3) | `FR-LP-001,004,005,006,007,020`           | Open   |
+| LP-001  | M1 — Landing Page | [#4](https://github.com/Pravin671231/TechCart-Landing-page/issues/4) | `FR-LP-008,009,010,011`                   | Open   |
+| LP-001  | M1 — Landing Page | [#5](https://github.com/Pravin671231/TechCart-Landing-page/issues/5) | `FR-LP-012,013,014,015,016,017`           | Open   |
+| LP-001  | M1 — Landing Page | [#6](https://github.com/Pravin671231/TechCart-Landing-page/issues/6) | `NFR-LP-002,003,004,005,007`; deploy      | Open   |
 
-Each draft is opened as a real GitHub Issue with `gh issue create` when work
-starts; its status here moves Draft → Open → Complete. The full
-requirement-to-issue coverage table lives at the end of
+Each issue's status moves Open → Complete as its PR squash-merges to `main`. The
+full requirement-to-issue coverage table lives at the end of
 [`../issues.md`](../issues.md).
 
 ---
@@ -181,8 +181,8 @@ Feature Selection → SRS Update → Milestone Creation → Issue Filing → Cod
 | ---- | ----------------------------------------------------------------- | ------------------- |
 | 1    | Decision to build the landing page                                | —                   |
 | 2    | This SRS + `features/LP-001-landing-page.md`                       | "Spec drafted"      |
-| 3    | Milestone **M1 — Landing Page** in [`../milestone.md`](../milestone.md) | Feature indexed |
-| 4    | Issue drafts `M1.1`–`M1.6` in [`../issues.md`](../issues.md); branch `feature/<n>-<scope>` | "Issues open" |
+| 3    | Milestone [**M1 — Landing Page**](https://github.com/Pravin671231/TechCart-Landing-page/milestone/1); roadmap in [`../milestone.md`](../milestone.md) | Feature indexed |
+| 4    | Issues [#1–#6](https://github.com/Pravin671231/TechCart-Landing-page/milestone/1) (drafts in [`../issues.md`](../issues.md)); branch `feature/<n>-<scope>` | "Issues open" |
 | 5    | PR squash-merged to `main`; acceptance criteria validated          | "Complete (v1.0.0)" |
 
 **Conventions (inherited from TechCart, adjusted for this repo):**

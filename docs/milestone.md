@@ -9,8 +9,10 @@ Issue drafts are in [`issues.md`](issues.md).
 ## Project Status Overview
 
 The repository foundation (SRS, feature spec, architecture note, conventions) is
-complete. The single delivery milestone, **M1 — Landing Page**, is open and
-specified but not started. Target release: `v1.0.0`.
+complete. The single delivery milestone,
+[**M1 — Landing Page**](https://github.com/Pravin671231/TechCart-Landing-page/milestone/1),
+is open on GitHub with six issues ([#1–#6](https://github.com/Pravin671231/TechCart-Landing-page/issues))
+and specified but not started. Target release: `v1.0.0`.
 
 | ID  | Title                  | Scope                                                          | Status              | Release          |
 | --- | ---------------------- | ------------------------------------------------------------ | ------------------- | ---------------- |
@@ -36,16 +38,16 @@ engineering-process guide — as a static Astro site deployed on Vercel.
 
 Each is an issue draft in [`issues.md`](issues.md). One issue per package.
 
-| Issue  | Package                                   | Requirements covered                                            |
-| ------ | ---------------------------------------- | ------------------------------------------------------------- |
-| `M1.1` | Project scaffold & tooling                | `LP-001` §2.4 constraints; `architecture.md` §2 layout          |
-| `M1.2` | Page shell: nav, TOC, scroll-spy, theme   | `FR-LP-002`, `003`, `018`, `019`; `NFR-LP-001`, `006`          |
-| `M1.3` | Product sections                          | `FR-LP-001`, `004`, `005`, `006`, `007`, `020`                 |
-| `M1.4` | Guide sections, part 1 (Claude Code, repo) | `FR-LP-008`, `009`, `010`, `011`                              |
-| `M1.5` | Guide sections, part 2 (engineering, delivery) | `FR-LP-012`, `013`, `014`, `015`, `016`, `017`            |
-| `M1.6` | Accessibility, performance, SEO & deploy   | `NFR-LP-002`, `003`, `004`, `005`, `007`; Vercel deploy         |
+| Issue | Package                                   | Requirements covered                                            |
+| ----- | ---------------------------------------- | ------------------------------------------------------------- |
+| [#1](https://github.com/Pravin671231/TechCart-Landing-page/issues/1) | Project scaffold & tooling                | `LP-001` §2.4 constraints; `architecture.md` §2 layout          |
+| [#2](https://github.com/Pravin671231/TechCart-Landing-page/issues/2) | Page shell: nav, TOC, scroll-spy, theme   | `FR-LP-002`, `003`, `018`, `019`; `NFR-LP-001`, `006`          |
+| [#3](https://github.com/Pravin671231/TechCart-Landing-page/issues/3) | Product sections                          | `FR-LP-001`, `004`, `005`, `006`, `007`, `020`                 |
+| [#4](https://github.com/Pravin671231/TechCart-Landing-page/issues/4) | Guide sections, part 1 (Claude Code, repo) | `FR-LP-008`, `009`, `010`, `011`                              |
+| [#5](https://github.com/Pravin671231/TechCart-Landing-page/issues/5) | Guide sections, part 2 (engineering, delivery) | `FR-LP-012`, `013`, `014`, `015`, `016`, `017`            |
+| [#6](https://github.com/Pravin671231/TechCart-Landing-page/issues/6) | Accessibility, performance, SEO & deploy   | `NFR-LP-002`, `003`, `004`, `005`, `007`; Vercel deploy         |
 
-Order: `M1.1` → `M1.2` → (`M1.3`, `M1.4`, `M1.5` in any order) → `M1.6` last.
+Order: #1 → #2 → (#3, #4, #5 in any order) → #6 last.
 
 ### Definition of Done
 
