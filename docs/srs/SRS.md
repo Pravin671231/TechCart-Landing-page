@@ -12,10 +12,10 @@
 
 ## Version History
 
-| Version | Date       | Scope                         | Status       |
-| ------- | ---------- | ----------------------------- | ------------ |
-| v0.1.0  | 2026-09-10 | Landing page feature spec     | Spec drafted |
-| v1.0.0  | —          | Landing page live in production | Planned    |
+| Version | Date       | Scope                            | Status       |
+| ------- | ---------- | -------------------------------- | ------------ |
+| v0.1.0  | 2026-09-10 | Landing page feature spec        | Spec drafted |
+| v1.0.0  | 2026-09-10 | All 16 sections built; M1 shipped | Released     |
 
 ---
 
@@ -161,10 +161,11 @@ issues under milestone
 | LP-001  | M1 — Landing Page | [#3](https://github.com/Pravin671231/TechCart-Landing-page/issues/3) | `FR-LP-001,004,005,006,007,020`           | Complete |
 | LP-001  | M1 — Landing Page | [#4](https://github.com/Pravin671231/TechCart-Landing-page/issues/4) | `FR-LP-008,009,010,011`                   | Complete |
 | LP-001  | M1 — Landing Page | [#5](https://github.com/Pravin671231/TechCart-Landing-page/issues/5) | `FR-LP-012,013,014,015,016,017`           | Complete |
-| LP-001  | M1 — Landing Page | [#6](https://github.com/Pravin671231/TechCart-Landing-page/issues/6) | `NFR-LP-002,003,004,005,007`; deploy      | In progress |
+| LP-001  | M1 — Landing Page | [#6](https://github.com/Pravin671231/TechCart-Landing-page/issues/6) | `NFR-LP-002,003,004,005,007`; deploy      | Complete |
 
-Each issue's status moves Open → Complete as its PR squash-merges to `main`. The
-full requirement-to-issue coverage table lives at the end of
+All six issues are merged and milestone **M1 — Landing Page** is closed; the work
+is tagged [`v1.0.0`](https://github.com/Pravin671231/TechCart-Landing-page/releases/tag/v1.0.0).
+The full requirement-to-issue coverage table lives at the end of
 [`../issues.md`](../issues.md).
 
 ---

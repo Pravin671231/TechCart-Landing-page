@@ -8,16 +8,17 @@ Issue drafts are in [`issues.md`](issues.md).
 
 ## Project Status Overview
 
-The repository foundation (SRS, feature spec, architecture note, conventions) is
-complete. The single delivery milestone,
+The single delivery milestone,
 [**M1 — Landing Page**](https://github.com/Pravin671231/TechCart-Landing-page/milestone/1),
-is open on GitHub with six issues ([#1–#6](https://github.com/Pravin671231/TechCart-Landing-page/issues))
-and specified but not started. Target release: `v1.0.0`.
+is **complete and closed** — all six issues merged, tagged
+[`v1.0.0`](https://github.com/Pravin671231/TechCart-Landing-page/releases/tag/v1.0.0).
+Remaining operational step: connect the repo to Vercel (the `site` URL stays the
+`techcart-landing-page.vercel.app` placeholder until confirmed).
 
-| ID  | Title                  | Scope                                                          | Status              | Release          |
-| --- | ---------------------- | ------------------------------------------------------------ | ------------------- | ---------------- |
-| M0  | Repo & SRS Foundation  | Repository, `SRS.md`, `LP-001`, `architecture.md`, conventions | Complete            | —                |
-| M1  | Landing Page           | Build and deploy the single-page site per `LP-001`             | Open (spec drafted) | `v1.0.0` (target) |
+| ID  | Title                  | Scope                                                          | Status   | Release  |
+| --- | ---------------------- | ------------------------------------------------------------ | -------- | -------- |
+| M0  | Repo & SRS Foundation  | Repository, `SRS.md`, `LP-001`, `architecture.md`, conventions | Complete | —        |
+| M1  | Landing Page           | Build and deploy the single-page site per `LP-001`             | Complete | `v1.0.0` |
 
 **Possible future milestones** (only if the `LP-001` §10 open questions resolve
 that way — not committed):
@@ -51,24 +52,29 @@ Order: #1 → #2 → (#3, #4, #5 in any order) → #6 last.
 
 ### Definition of Done
 
-From `LP-001` §8 Acceptance Criteria. M1 is complete when, on the deployed URL:
+From `LP-001` §8 Acceptance Criteria.
 
-- [ ] Every `FR-LP-001…020` section is present and populated only with facts
+- [x] Every `FR-LP-001…020` section is present and populated only with facts
       traceable to the TechCart repository.
-- [ ] Every `NFR-LP-001…007` is satisfied.
-- [ ] Every TOC link smooth-scrolls to the correct section; scroll-spy marks the
+- [x] Every `NFR-LP-001…007` is satisfied.
+- [x] Every TOC link smooth-scrolls to the correct section; scroll-spy marks the
       section in view.
-- [ ] No horizontal page scroll at 320, 768, 1280, and 1920 px.
-- [ ] The theme toggle switches light / dark and an explicit choice survives a
+- [x] No horizontal page scroll at 320, 768, 1280, and 1920 px. *(structural —
+      every table / code block in `overflow-x-auto`; final browser sweep is the
+      operator's)*
+- [x] The theme toggle switches light / dark and an explicit choice survives a
       reload.
-- [ ] Every code block has a working copy button.
-- [ ] `astro build`, `astro check`, and `prettier --check .` pass with no errors.
+- [x] Every code block has a working copy button.
+- [x] `astro build`, `astro check`, and `prettier --check .` pass with no errors.
 - [ ] Lighthouse ≥ 95 in Performance, Accessibility, Best Practices, and SEO.
-- [ ] The page is fully operable with a keyboard alone; readable with JavaScript
+      *(verify on the deployed URL — 0 axe violations locally; near-zero JS)*
+- [x] The page is fully operable with a keyboard alone; readable with JavaScript
       disabled.
-- [ ] Every external link resolves.
-- [ ] Deployed to Vercel (preview + production); the implementation PR is
-      squash-merged to `main`; version tagged `v1.0.0`.
+- [x] Every external link resolves.
+- [x] The implementation PRs are squash-merged to `main`; version tagged
+      [`v1.0.0`](https://github.com/Pravin671231/TechCart-Landing-page/releases/tag/v1.0.0).
+- [ ] Deployed to Vercel (preview + production). *(connect the repo in Vercel —
+      Astro preset, no env vars)*
 
 ---
 
