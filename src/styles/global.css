@@ -3,8 +3,7 @@
 /*
  * Design tokens. Light palette on :root; dark palette applied both by the OS
  * setting (prefers-color-scheme) and by an explicit [data-theme] on <html>
- * (the manual toggle lands in issue #2 — the selectors are defined now so this
- * file stays stable).
+ * (set by the theme toggle in Nav.astro / the pre-paint script in BaseLayout).
  */
 :root {
   --bg: #ffffff;
@@ -44,8 +43,29 @@
   --focus: #818cf8;
 }
 
+/*
+ * Expose the palette to Tailwind as theme tokens. `inline` keeps the generated
+ * utilities as `var(--…)` references, so `bg-surface` / `text-fg` / `border-border`
+ * still respond to the runtime theme switch above.
+ */
+@theme inline {
+  --color-page: var(--bg);
+  --color-surface: var(--surface);
+  --color-fg: var(--fg);
+  --color-muted: var(--muted);
+  --color-border: var(--border);
+  --color-accent: var(--accent);
+  --color-accent-2: var(--accent-2);
+  --color-accent-fg: var(--accent-fg);
+
+  --font-mono:
+    ui-monospace, 'SFMono-Regular', 'JetBrains Mono', Menlo, Consolas, 'Liberation Mono', monospace;
+}
+
 html {
   color-scheme: light dark;
+  scroll-behavior: smooth;
+  scroll-padding-top: 5rem; /* keep anchored sections clear of the sticky nav */
 }
 
 body {
@@ -84,6 +104,26 @@ body {
 
 .skip-link:focus {
   top: 0.5rem;
+}
+
+/*
+ * Section entrance animation. Sections are fully visible by default (no-JS and
+ * reduced-motion safe); the scroll-spy script adds `.is-visible` to fade/slide
+ * them in when motion is allowed.
+ */
+@media (prefers-reduced-motion: no-preference) {
+  .section-enter {
+    opacity: 0;
+    transform: translateY(1rem);
+    transition:
+      opacity 0.5s ease,
+      transform 0.5s ease;
+  }
+
+  .section-enter.is-visible {
+    opacity: 1;
+    transform: none;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {

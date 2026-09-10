@@ -36,7 +36,7 @@ style; each maps to one GitHub issue number.
 
 ## M1.1 — Project scaffold & tooling
 
-**Status:** In progress — [#1](https://github.com/Pravin671231/TechCart-Landing-page/issues/1) on branch `feature/1-scaffold`
+**Status:** Complete — [#1](https://github.com/Pravin671231/TechCart-Landing-page/issues/1) (merged in [#7](https://github.com/Pravin671231/TechCart-Landing-page/pull/7))
 
 ### Context
 
@@ -88,7 +88,7 @@ None.
 
 ## M1.2 — Page shell: nav, TOC sidebar, scroll-spy, theme toggle
 
-**Status:** Open — [#2](https://github.com/Pravin671231/TechCart-Landing-page/issues/2)
+**Status:** In progress — [#2](https://github.com/Pravin671231/TechCart-Landing-page/issues/2) on branch `feature/2-page-shell`
 
 ### Context
 
