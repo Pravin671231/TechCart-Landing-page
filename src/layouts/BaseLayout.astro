@@ -1,5 +1,7 @@
 ---
 import '../styles/global.css';
+import '@fontsource-variable/inter';
+import BrandTokens from '../components/BrandTokens.astro';
 import { SITE_TITLE, SITE_DESCRIPTION, TECHCART_REPO_URL } from '../consts';
 
 interface Props {
@@ -35,8 +37,8 @@ const imageURL = new URL(image, Astro.site ?? Astro.url);
     </script>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="generator" content={Astro.generator} />
-    <meta name="theme-color" media="(prefers-color-scheme: light)" content="#ffffff" />
-    <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#0b1120" />
+    <meta name="theme-color" media="(prefers-color-scheme: light)" content="#CAF0F8" />
+    <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#03045E" />
 
     <title>{title}</title>
     <meta name="description" content={description} />
@@ -62,6 +64,8 @@ const imageURL = new URL(image, Astro.site ?? Astro.url);
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content={imageURL} />
+
+    <BrandTokens />
   </head>
   <body>
     <a class="skip-link" href="#main">
