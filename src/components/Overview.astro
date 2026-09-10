@@ -1,0 +1,75 @@
+---
+import { APPS } from '../data/apps';
+
+// Buyer renders server-side and is the no-JS default (LP-002 FR-LP-023).
+const initial = APPS[0];
+---
+
+<section id="overview" tabindex="-1" class="section-enter flex min-h-[80dvh] flex-col py-10">
+  <div role="group" aria-label="Choose app" class="flex justify-center gap-2">
+    {APPS.map((app, i) => (
+      <button
+        type="button"
+        data-app-key={app.key}
+        aria-pressed={i === 0 ? 'true' : 'false'}
+        class="app-toggle-btn rounded-md border border-border px-4 py-2 text-sm font-medium text-fg transition-colors hover:bg-surface"
+      >
+        {app.label}
+      </button>
+    ))}
+  </div>
+
+  <div class="flex flex-1 flex-col items-center justify-center px-4 text-center">
+    <p class="text-xs font-medium tracking-widest text-muted uppercase">
+      Production e-commerce platform
+    </p>
+    <h1
+      data-app-title
+      class="mt-3 text-3xl font-bold tracking-tight text-fg md:text-4xl lg:text-5xl"
+    >
+      {initial.title}
+    </h1>
+    <p data-app-desc class="mt-4 max-w-2xl text-lg text-muted">
+      {initial.description}
+    </p>
+  </div>
+
+  <div class="flex flex-col gap-3 sm:flex-row sm:justify-center">
+    <a
+      data-app-repo
+      href={initial.repoUrl}
+      target="_blank"
+      rel="noopener noreferrer"
+      class="w-full rounded-md bg-accent px-4 py-2 text-center text-sm font-medium text-accent-fg transition-opacity hover:opacity-90 sm:w-auto"
+    >
+      GitHub Repo
+    </a>
+    <a
+      data-app-demo
+      href={initial.demoUrl}
+      target="_blank"
+      rel="noopener noreferrer"
+      class="w-full rounded-md border border-border px-4 py-2 text-center text-sm font-medium text-fg transition-colors hover:bg-surface sm:w-auto"
+    >
+      Live Demo
+    </a>
+  </div>
+
+  <script type="application/json" id="apps-data" is:inline set:html={JSON.stringify(APPS)}></script>
+</section>
+
+<style>
+  /* Buyer App / Admin App toggle: pressed = primary, unpressed = outline. */
+  .app-toggle-btn[aria-pressed='true'] {
+    border-color: transparent;
+    background: var(--accent);
+    color: var(--accent-fg);
+  }
+  .app-toggle-btn[aria-pressed='true']:hover {
+    opacity: 0.9;
+  }
+</style>
+
+<script>
+  import '../scripts/app-toggle.ts';
+</script>

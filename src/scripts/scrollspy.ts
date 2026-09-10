@@ -10,6 +10,11 @@
  *
  * With JavaScript disabled the TOC links are plain anchors and every section is
  * fully visible — nothing here is required for the page to work.
+ *
+ * The nav now has 4 top-level entries (`overview` / `casestudy` / `user-manual`
+ * / `features`, from `NAV` in `toc.ts`); this observer already queries any
+ * `section[id]` generically, so `#overview` today and `#documentation` once
+ * M2.3 (issue #18) adds it are picked up without changes here.
  */
 const sections = Array.from(document.querySelectorAll<HTMLElement>('main section[id]'));
 const tocLinks = Array.from(document.querySelectorAll<HTMLAnchorElement>('[data-toc-link]'));

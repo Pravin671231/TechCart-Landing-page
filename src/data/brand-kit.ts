@@ -54,7 +54,7 @@ function modeDeclarations(mode: BrandKitMode): string {
 /**
  * Builds the same three rule shapes `global.css` used to hand-write: a
  * `:root` default (light), an OS-preference dark override, and an explicit
- * `[data-theme]` override for the toggle in `Nav.astro`.
+ * `[data-theme]` override for the toggle in `ThemeToggle.astro`.
  */
 export function tokenCss(): string {
   const light = modeDeclarations(BRAND_KIT.light_mode);

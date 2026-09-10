@@ -1,0 +1,49 @@
+---
+import { TECHCART_REPO_URL } from '../consts';
+import { NAV } from '../data/toc';
+import ThemeToggle from './ThemeToggle.astro';
+---
+
+<aside class="sticky top-0 hidden h-dvh flex-col justify-between border-r border-border px-4 py-6 lg:flex">
+  <div>
+    <a href="#overview" class="text-sm font-semibold tracking-tight text-fg">
+      Tech<span class="text-accent">Cart</span>
+    </a>
+
+    <nav aria-label="Primary" class="mt-8">
+      <ol class="space-y-1 text-sm">
+        {NAV.map((entry) => (
+          <li>
+            <a
+              href={`#${entry.id}`}
+              data-toc-link={entry.id}
+              class="toc-link block border-l-2 border-transparent py-1 pl-3 text-muted transition-colors hover:text-fg"
+            >
+              {entry.title}
+            </a>
+          </li>
+        ))}
+      </ol>
+    </nav>
+  </div>
+
+  <div class="flex items-center justify-between">
+    <a
+      href={TECHCART_REPO_URL}
+      target="_blank"
+      rel="noopener noreferrer"
+      class="rounded-md px-2 py-1.5 text-sm text-muted transition-colors hover:text-fg"
+    >
+      GitHub
+    </a>
+    <ThemeToggle />
+  </div>
+</aside>
+
+<style>
+  .toc-link.is-active {
+    border-color: var(--accent);
+    color: var(--fg);
+    font-weight: 500;
+  }
+</style>

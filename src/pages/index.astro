@@ -1,10 +1,9 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import Nav from '../components/Nav.astro';
-import TocSidebar from '../components/TocSidebar.astro';
-import MobileNav from '../components/MobileNav.astro';
+import LeftSidenav from '../components/LeftSidenav.astro';
+import TopBar from '../components/TopBar.astro';
 import Section from '../components/Section.astro';
-import Hero from '../components/Hero.astro';
+import Overview from '../components/Overview.astro';
 import ProjectSummary from '../components/ProjectSummary.astro';
 import FeatureCard from '../components/FeatureCard.astro';
 import SuggestedFeatures from '../components/SuggestedFeatures.astro';
@@ -24,15 +23,13 @@ import { FEATURES, LANDING_STACK, TECHCART_STACK } from '../data/techcart';
 ---
 
 <BaseLayout>
-  <Nav />
+  <div class="min-h-dvh lg:grid lg:grid-cols-[2fr_10fr]">
+    <LeftSidenav />
 
-  <div class="mx-auto max-w-6xl px-4 lg:grid lg:grid-cols-[15rem_minmax(0,1fr)] lg:gap-12">
-    <TocSidebar />
+    <div class="min-w-0 px-4 lg:px-8">
+      <TopBar />
 
-    <div class="min-w-0">
-      <MobileNav />
-
-      <Hero />
+      <Overview />
 
       <Section id="summary" title="Project Summary">
         <ProjectSummary />
