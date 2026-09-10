@@ -191,12 +191,11 @@ Feature Selection → SRS Update → Milestone Creation → Issue Filing → Cod
 - Branches: `feature/<issue>-<scope>` → `main`, **squash-merge only**, branch
   protection on `main` (required CI, no direct pushes, linear history).
 - Commits: Conventional Commits — `type(scope): message (Issue #N)`.
-- Commit / PR attribution for AI-assisted work in **this** repo:
-  `Co-Authored-By: Claude Sonnet 5 <noreply@anthropic.com>` on commits and
-  `🤖 Generated with [Claude Code](https://claude.com/claude-code)` on PRs.
-  (Note: the TechCart repo itself forbids AI co-author trailers — that rule is
-  TechCart's, not this project's.)
+- AI attribution: none. Commits carry no `Co-Authored-By` trailer and PRs carry
+  no "Generated with Claude Code" line.
 - Planning: use the `discuss-plan-build` Claude Code skill for non-trivial changes.
+- Skills: `discuss-plan-build`, `auto-commit-push`, and `auto-pr-merge` are
+  vendored in `.claude/skills/`, kept in sync verbatim with the TechCart repo.
 
 ---
 
