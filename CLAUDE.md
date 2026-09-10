@@ -51,14 +51,20 @@ is the contract, not notes:
   facts to Appendix A first, then here.
 - `guide.ts` — copy/snippets for the engineering-guide sections.
 
-**Design tokens & theming.** `src/styles/global.css` defines CSS custom properties
-(`--bg`, `--fg`, `--accent`, …): light values on `:root`, dark values under both
-`@media (prefers-color-scheme: dark) :root:not([data-theme='light'])` and
-`:root[data-theme='dark']`. `@theme inline` re-exposes them as Tailwind utilities
-(`bg-page`, `text-fg`, `border-border`) that still track the runtime theme. Use
-those utilities — don't reach for raw Tailwind color classes. A pre-paint inline
-script in `src/layouts/BaseLayout.astro` applies a stored `localStorage` theme
-before first paint; the toggle button + its logic live in `src/components/Nav.astro`.
+**Design tokens & theming.** `src/data/brand-kit.json` — the **Ocean Royale**
+brand kit — is the single source of truth for every color; it is not read
+directly by components. `src/data/brand-kit.ts`'s `tokenCss()` derives the
+`--bg`, `--fg`, `--accent`, … CSS custom properties from it (light values on
+`:root`, dark values under both `@media (prefers-color-scheme: dark) :root:not([data-theme='light'])`
+and `:root[data-theme='dark']`), and `<BrandTokens />` (rendered from
+`BaseLayout.astro`) is the only place that CSS actually lands on the page.
+`src/styles/global.css`'s `@theme inline` re-exposes those custom properties as
+Tailwind utilities (`bg-page`, `text-fg`, `border-border`, plus `font-sans` for
+the self-hosted Inter variable font) that still track the runtime theme. Use
+those utilities — don't reach for raw Tailwind color classes, and don't add a
+color literal anywhere outside `brand-kit.json`. A pre-paint inline script in
+`src/layouts/BaseLayout.astro` applies a stored `localStorage` theme before
+first paint; the toggle button + its logic live in `src/components/Nav.astro`.
 Tailwind v4 is wired via `@tailwindcss/vite` in `astro.config.mjs` with CSS-first
 config (`@import 'tailwindcss'` in `global.css`) — there is no `tailwind.config`.
 
@@ -108,7 +114,9 @@ URL until the project is connected.
 ## In flight — M2 Redesign
 
 `docs/milestone.md` + `docs/issues.md` (M2.1–M2.4) describe a redesign to an
-app-shell: an `src/data/brand-kit.json` "Ocean Royale" palette becoming the single
-source of truth for the design tokens, a `container-fluid` two-column grid with a
-sticky full-height left sidenav, an 80dvh Overview with a Buyer/Admin toggle, and
-a tabbed documentation area. The feature spec `LP-002` is not yet written.
+app-shell. **M2.1 (Ocean Royale brand kit, issue #16) is merged** —
+`src/data/brand-kit.json` is now the single source of truth for the design
+tokens; see the Design tokens & theming section above. Remaining: a
+`container-fluid` two-column grid with a sticky full-height left sidenav
+(M2.2), an 80dvh Overview with a Buyer/Admin toggle (M2.2), and a tabbed
+documentation area (M2.3–M2.4). The feature spec `LP-002` is not yet written.

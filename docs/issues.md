@@ -377,7 +377,8 @@ container, and the tab strip scrolls horizontally on narrow screens.
 
 ## M2.1 — Ocean Royale brand kit
 
-**Status:** Open — [#16](https://github.com/Pravin671231/TechCart-Landing-page/issues/16)
+**Status:** Merged — [#16](https://github.com/Pravin671231/TechCart-Landing-page/issues/16),
+[PR #22](https://github.com/Pravin671231/TechCart-Landing-page/pull/22)
 
 ### Context
 
@@ -388,27 +389,29 @@ CSS design tokens and the site font (Inter) from it.
 
 ### Tasks
 
-- [ ] `src/data/brand-kit.json` — the Ocean Royale brand kit (theme, font,
+- [x] `src/data/brand-kit.json` — the Ocean Royale brand kit (theme, font,
       `light_mode`, `dark_mode`, `palette`). Valid JSON (no trailing comma).
-- [ ] `src/data/brand-kit.ts` — import the JSON; typed export plus a `tokenCss()`
+- [x] `src/data/brand-kit.ts` — import the JSON; typed export plus a `tokenCss()`
       helper that builds the `:root`, `:root[data-theme='dark']`, and
       `@media (prefers-color-scheme: dark) :root:not([data-theme='light'])` rule
       text from `light_mode` / `dark_mode`.
-- [ ] `src/components/BrandTokens.astro` — emit
+- [x] `src/components/BrandTokens.astro` — emit
       `<style is:global set:html={tokenCss()}></style>`; render from
       `BaseLayout.astro` after the `global.css` import so it is the sole definer
       of the colour custom properties.
-- [ ] `src/styles/global.css` — remove the hard-coded `:root` / dark colour
+- [x] `src/styles/global.css` — remove the hard-coded `:root` / dark colour
       blocks; keep the `@theme inline` mapping; add `--color-heading`,
       `--color-button`, `--color-button-text`, `--color-highlight`; set
-      `--font-sans` to `'InterVariable', ui-sans-serif, system-ui, …` and apply
-      it to `body`.
-- [ ] `@fontsource-variable/inter` — add the dependency (self-hosted, no external
+      `--font-sans` to `'Inter Variable', ui-sans-serif, system-ui, …` and apply
+      it to `body`. (`'Inter Variable'` — with a space — is what
+      `@fontsource-variable/inter` actually registers; the originally drafted
+      `'InterVariable'` would have silently fallen back to the system font.)
+- [x] `@fontsource-variable/inter` — add the dependency (self-hosted, no external
       request); `import '@fontsource-variable/inter'` in `BaseLayout.astro`;
       `npm install` to update `package-lock.json`.
-- [ ] `BaseLayout.astro` — update the two `<meta name="theme-color">` values to
+- [x] `BaseLayout.astro` — update the two `<meta name="theme-color">` values to
       `#CAF0F8` (light) / `#03045E` (dark); keep the pre-paint theme script.
-- [ ] `scripts/gen-og.mjs` — recolour to Ocean Royale (`#03045E` ground,
+- [x] `scripts/gen-og.mjs` — recolour to Ocean Royale (`#03045E` ground,
       cyan→gold accent bar, `#CAF0F8` text); run `npm run gen:og` to rewrite
       `public/og.png`.
 
@@ -416,9 +419,21 @@ CSS design tokens and the site font (Inter) from it.
 `surface`→`--surface`, `text`→`--fg`, `heading`→`--heading`,
 `secondary_text`→`--muted`, `border`→`--border`, `primary`→`--accent`,
 `highlight`→`--accent-2` / `--highlight`, `button`→`--button`,
-`button_text`→`--button-text`; `--accent-fg` = `#CAF0F8`, `--focus` = `#00B4D8`.
+`button_text`→`--button-text`; `--focus` = `#00B4D8` (fixed, both modes).
 Existing consumers keep working — the var names are unchanged, only the values
 move to the JSON.
+
+**Implementation note — `--accent-fg` is theme-aware, not fixed.** The
+originally drafted `--accent-fg = #CAF0F8` (a single value for both modes) is
+incompatible with `--accent` also being legible as real inline link text
+against the near-black dark background: `bg-accent` + `text-accent-fg` CTA
+buttons need `--accent` dark enough for a fixed light `--accent-fg` to read on
+top, while `text-accent` links need `--accent` bright enough to read against
+`--bg` in dark mode — no single `--accent` value satisfies both. `brand-kit.json`
+instead carries `accent_fg` per mode (`#CAF0F8` light / `#03045E` dark),
+restoring the pattern the pre-M2 CSS already used. Every other token matches
+this draft exactly; see the shipped `light_mode` / `dark_mode` objects in
+`src/data/brand-kit.json` for the full, contrast-verified value set.
 
 ### Requirements covered
 
