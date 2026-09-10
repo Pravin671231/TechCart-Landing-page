@@ -1,0 +1,42 @@
+{
+  "theme": "Ocean Royale",
+  "font": "Inter",
+  "focus": "#00B4D8",
+  "palette": {
+    "100": "#CAF0F8",
+    "200": "#ADE8F4",
+    "300": "#90E0EF",
+    "400": "#48CAE4",
+    "500": "#00B4D8",
+    "600": "#0096C7",
+    "700": "#0077B6",
+    "800": "#023E8A",
+    "900": "#03045E"
+  },
+  "light_mode": {
+    "background": "#CAF0F8",
+    "surface": "#FFFFFF",
+    "text": "#03045E",
+    "heading": "#03045E",
+    "secondary_text": "#023E8A",
+    "border": "#ADE8F4",
+    "primary": "#023E8A",
+    "highlight": "#0077B6",
+    "button": "#023E8A",
+    "button_text": "#CAF0F8",
+    "accent_fg": "#CAF0F8"
+  },
+  "dark_mode": {
+    "background": "#03045E",
+    "surface": "#023E8A",
+    "text": "#CAF0F8",
+    "heading": "#CAF0F8",
+    "secondary_text": "#90E0EF",
+    "border": "#0077B6",
+    "primary": "#48CAE4",
+    "highlight": "#90E0EF",
+    "button": "#48CAE4",
+    "button_text": "#03045E",
+    "accent_fg": "#03045E"
+  }
+}
