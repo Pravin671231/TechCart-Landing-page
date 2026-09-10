@@ -8,7 +8,9 @@ under [`srs/features/`](srs/features/).
   all six drafts (M1.1–M1.6) merged as issues
   [#1–#6](https://github.com/Pravin671231/TechCart-Landing-page/issues?q=is%3Aissue+milestone%3A%22M1+%E2%80%94+Landing+Page%22);
   spec [`LP-001`](srs/features/LP-001-landing-page.md).
-- **M2 — Redesign** — drafts M2.1–M2.4 below; **not yet filed as GitHub issues**;
+- **[M2 — Redesign](https://github.com/Pravin671231/TechCart-Landing-page/milestone/2)** —
+  drafts M2.1–M2.4 filed as issues
+  [#16–#19](https://github.com/Pravin671231/TechCart-Landing-page/issues?q=is%3Aissue+milestone%3A%22M2+%E2%80%94+Redesign%22);
   spec `LP-002` (`srs/features/LP-002-redesign.md`, to be drafted).
 
 The full drafts are kept here as the working checklist; GitHub carries the live
@@ -35,10 +37,10 @@ style; each maps to one GitHub issue number once filed.
 | M1.4   | [#4](https://github.com/Pravin671231/TechCart-Landing-page/issues/4) |
 | M1.5   | [#5](https://github.com/Pravin671231/TechCart-Landing-page/issues/5) |
 | M1.6   | [#6](https://github.com/Pravin671231/TechCart-Landing-page/issues/6) |
-| M2.1   | _not filed_ |
-| M2.2   | _not filed_ |
-| M2.3   | _not filed_ |
-| M2.4   | _not filed_ |
+| M2.1   | [#16](https://github.com/Pravin671231/TechCart-Landing-page/issues/16) |
+| M2.2   | [#17](https://github.com/Pravin671231/TechCart-Landing-page/issues/17) |
+| M2.3   | [#18](https://github.com/Pravin671231/TechCart-Landing-page/issues/18) |
+| M2.4   | [#19](https://github.com/Pravin671231/TechCart-Landing-page/issues/19) |
 
 ---
 
@@ -358,10 +360,12 @@ see the Definition of Done in [`milestone.md`](milestone.md).
 
 # M2 — Redesign
 
-Drafts for milestone **M2 — Redesign** — feature `LP-002`
-(`srs/features/LP-002-redesign.md`, to be drafted). Not yet filed as GitHub
-issues. Order is strict: **M2.1 → M2.2 → M2.3 → M2.4**, each branched off the
-previous merge. Branch names `feature/<issue-number>-<scope>`; commits carry no
+Drafts for milestone
+[**M2 — Redesign**](https://github.com/Pravin671231/TechCart-Landing-page/milestone/2) —
+feature `LP-002` (`srs/features/LP-002-redesign.md`, to be drafted). Filed as
+issues [#16–#19](https://github.com/Pravin671231/TechCart-Landing-page/issues?q=is%3Aissue+milestone%3A%22M2+%E2%80%94+Redesign%22).
+Order is strict: **M2.1 → M2.2 → M2.3 → M2.4**, each branched off the previous
+merge. Branch names `feature/<issue-number>-<scope>`; commits carry no
 `Co-Authored-By` trailer and PRs no "Generated with Claude Code" line.
 
 NFRs inherit `NFR-LP-001…007` from `LP-001`. The shared responsive contract
@@ -373,7 +377,7 @@ container, and the tab strip scrolls horizontally on narrow screens.
 
 ## M2.1 — Ocean Royale brand kit
 
-**Status:** Draft — not filed.
+**Status:** Open — [#16](https://github.com/Pravin671231/TechCart-Landing-page/issues/16)
 
 ### Context
 
@@ -438,7 +442,7 @@ None (first M2 issue).
 
 ## M2.2 — App-shell layout + Overview
 
-**Status:** Draft — not filed.
+**Status:** Open — [#17](https://github.com/Pravin671231/TechCart-Landing-page/issues/17)
 
 ### Context
 
@@ -514,7 +518,7 @@ app toggle.
 
 ## M2.3 — Documentation tabs
 
-**Status:** Draft — not filed.
+**Status:** Open — [#18](https://github.com/Pravin671231/TechCart-Landing-page/issues/18)
 
 ### Context
 
@@ -569,7 +573,7 @@ the component, the behaviour, and the nav wiring.
 
 ## M2.4 — Migrate M1 sections into tabs
 
-**Status:** Draft — not filed.
+**Status:** Open — [#19](https://github.com/Pravin671231/TechCart-Landing-page/issues/19)
 
 ### Context
 
@@ -628,8 +632,8 @@ GitHub issues one-to-one: `M1.1` → #1, `M1.2` → #2, `M1.3` → #3, `M1.4` �
 
 Every requirement in `LP-002` maps to exactly one M2 issue: `FR-LP-021` → `M2.1`;
 `FR-LP-022` / `023` / `024` → `M2.2`; `FR-LP-025` → `M2.3`; `FR-LP-026` → `M2.4`;
-`FR-LP-027` (shared responsive contract) → `M2.2` + `M2.3`. M2 issue numbers are
-assigned when the drafts are filed.
+`FR-LP-027` (shared responsive contract) → `M2.2` + `M2.3`. Draft IDs map to
+GitHub issues one-to-one: `M2.1` → #16, `M2.2` → #17, `M2.3` → #18, `M2.4` → #19.
 
 ### Functional requirements
 
