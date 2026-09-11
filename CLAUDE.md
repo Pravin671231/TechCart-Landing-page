@@ -41,12 +41,18 @@ is the contract, not notes:
 - `docs/milestone.md` / `docs/issues.md` — milestone roadmap and full issue
   drafts (M#.x IDs → GitHub issue numbers). Update these alongside code.
 - `docs/architecture.md` — build/deploy rationale.
+- `docs/user-manuals/`, `docs/case-studies/`, `docs/features/` — reference
+  material about **TechCart itself** (not this page), split Buyer App / Admin
+  App. The manuals link out to TechCart's live, screenshot-rendered originals
+  rather than duplicating them; the case studies and feature lists are composed
+  here from TechCart's README/SRS/architecture docs. No landing-page rendering
+  reads these yet.
 
 **Single-source data modules (`src/data/`).** Components never hardcode content:
 - `toc.ts` — exports `NAV`, the ordered `[{ id, title }]` app-shell nav (four
   items: overview/casestudy/user-manual/features) — the only source for
-  `LeftSidenav` and `TopBar`'s menu drawer. `casestudy`/`user-manual` don't
-  resolve to a section yet; `#documentation` lands in M2.3 (issue #18).
+  `LeftSidenav` and `TopBar`'s menu drawer — and `TABS` (`NAV` minus
+  `overview`), which drives `DocTabs.astro`'s tablist.
 - `apps.ts` — Buyer/Admin copy (title, description, repo/demo URLs) for the
   Overview toggle, sourced from `WORKSPACES` (`techcart.ts`) + `consts.ts`.
 - `techcart.ts` — every TechCart claim (stack, milestones, features, data model),
@@ -77,21 +83,29 @@ config (`@import 'tailwindcss'` in `global.css`) — there is no `tailwind.confi
 **Interactivity budget (`src/scripts/`).** Near-zero client JS, all progressive
 enhancement — the page must be fully usable with JavaScript disabled and by
 keyboard alone:
-- `scrollspy.ts` — `IntersectionObserver` marks the active `[data-toc-link]` and
-  reveals `.section-enter` sections; no-JS fallback is a plain anchor list.
-- `theme.ts` (theme toggle), `app-toggle.ts` (Overview's Buyer/Admin toggle),
-  and the delegated copy-button handler (in `CodeBlock.astro`) are the only
-  other scripts.
+- `scrollspy.ts` — `IntersectionObserver` marks the active `[data-toc-link]` for
+  `#overview`; it skips `#documentation` and clears the highlight when nothing
+  is in the band, handing that entry off to `tabs.ts`. Also reveals
+  `.section-enter` sections; no-JS fallback is a plain anchor list.
+- `tabs.ts` — click / `ArrowLeft`-`ArrowRight`-`Home`-`End` activation for
+  `DocTabs.astro`'s tablist; syncs `location.hash` and mirrors the active tab
+  onto `[data-toc-link]`. All three panels render visible in markup — `tabs.ts`
+  is what hides the inactive two, so a no-JS reader gets every panel stacked.
+- `theme.ts` (theme toggle) and `app-toggle.ts` (Overview's Buyer/Admin toggle)
+  are the remaining scripts, plus the delegated copy-button handler (in
+  `CodeBlock.astro`).
 `prefers-reduced-motion` must disable all non-essential animation.
 
 **Page assembly.** `src/pages/index.astro` imports `BaseLayout` and renders the
 app-shell grid: `LeftSidenav` (sticky, `lg`+) + a main column with `TopBar`
-(`lg:hidden` menu drawer), `Overview`, then the M1 content sections in `Section`
-wrappers (still flat below Overview — M2.3/M2.4 move them into tabs).
-`BaseLayout.astro` owns `<head>` (meta/OG/Twitter, canonical, sitemap, favicons,
-theme-color) and the skip link. `@astrojs/sitemap` generates `sitemap-index.xml`;
-`astro.config.mjs` `site` is a placeholder Vercel URL until the project is
-connected.
+(`lg:hidden` menu drawer), `Overview`, then `DocTabs` — the Case Study / User
+Manual / Features tablist, each `<slot>` holding the M1 content in `Section`
+wrappers (panel ids are the bare `casestudy`/`user-manual`/`features` slugs so
+`LeftSidenav`/`TopBar` links resolve natively; tab-button ids get a `tab-`
+prefix). `BaseLayout.astro` owns `<head>` (meta/OG/Twitter, canonical, sitemap,
+favicons, theme-color) and the skip link. `@astrojs/sitemap` generates
+`sitemap-index.xml`; `astro.config.mjs` `site` is a placeholder Vercel URL
+until the project is connected.
 
 ## Conventions
 
@@ -124,10 +138,11 @@ connected.
 ## In flight — M2 Redesign
 
 `docs/milestone.md` + `docs/issues.md` (M2.1–M2.4) describe a redesign to an
-app-shell. **M2.1 (Ocean Royale brand kit, issue #16) and M2.2 (app-shell
-layout + Overview, issue #17) are merged** — see the Design tokens & theming
-and Page assembly sections above. Remaining: a tabbed documentation area
-(Case Study · User Manual · Features) replacing the flat M1 sections (M2.3),
-and migrating M1's 16 sections into it (M2.4); `#casestudy`/`#user-manual`
-sidenav links are dead until then. The feature spec `LP-002` is not yet
-written.
+app-shell. **M2.1 (Ocean Royale brand kit, #16), M2.2 (app-shell layout +
+Overview, #17), and M2.3 (documentation tabs, #18) are merged** — see the
+Design tokens & theming, Interactivity budget, and Page assembly sections
+above. `#casestudy`/`#user-manual`/`#features` all resolve now. Remaining:
+**M2.4 (#19)** — reframe the Case Study panel with a problem → approach →
+outcome lede (`CaseStudy.astro`) and split `Footer`'s "Get Started" content
+into the User Manual panel — after which `v2.0.0` is tagged. The feature spec
+`LP-002` is still not written.
