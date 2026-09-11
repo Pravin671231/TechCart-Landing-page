@@ -5,10 +5,9 @@ import TopBar from '../components/TopBar.astro';
 import Section from '../components/Section.astro';
 import Overview from '../components/Overview.astro';
 import DocTabs from '../components/DocTabs.astro';
-import ProjectSummary from '../components/ProjectSummary.astro';
+import CaseStudy from '../components/CaseStudy.astro';
 import FeatureCard from '../components/FeatureCard.astro';
 import SuggestedFeatures from '../components/SuggestedFeatures.astro';
-import StackTable from '../components/StackTable.astro';
 import ClaudeCode from '../components/ClaudeCode.astro';
 import FolderArchitecture from '../components/FolderArchitecture.astro';
 import NodeVersion from '../components/NodeVersion.astro';
@@ -20,7 +19,7 @@ import Deployment from '../components/Deployment.astro';
 import ApiDesign from '../components/ApiDesign.astro';
 import GitGithub from '../components/GitGithub.astro';
 import Footer from '../components/Footer.astro';
-import { FEATURES, LANDING_STACK, TECHCART_STACK } from '../data/techcart';
+import { FEATURES } from '../data/techcart';
 ---
 
 <BaseLayout>
@@ -34,18 +33,7 @@ import { FEATURES, LANDING_STACK, TECHCART_STACK } from '../data/techcart';
 
       <DocTabs>
         <Fragment slot="casestudy">
-          <Section id="summary" title="Project Summary">
-            <ProjectSummary />
-          </Section>
-
-          <Section id="tech-stack" title="Tech Stack">
-            <StackTable
-              caption="This landing page"
-              head={['Concern', 'Choice', 'Why']}
-              rows={LANDING_STACK}
-            />
-            <StackTable caption="TechCart" head={['Layer', 'Technology']} rows={TECHCART_STACK} />
-          </Section>
+          <CaseStudy />
         </Fragment>
 
         <Fragment slot="manual">

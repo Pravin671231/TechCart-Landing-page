@@ -588,7 +588,7 @@ the component, the behaviour, and the nav wiring.
 
 ## M2.4 — Migrate M1 sections into tabs
 
-**Status:** Open — [#19](https://github.com/Pravin671231/TechCart-Landing-page/issues/19)
+**Status:** Complete — [#19](https://github.com/Pravin671231/TechCart-Landing-page/issues/19) (merged in [#28](https://github.com/Pravin671231/TechCart-Landing-page/pull/28)). The `manual`/`features` slot content had already moved into `DocTabs` in #18; this issue delivered the `CaseStudy.astro` Problem/Approach/Outcome lede for the `casestudy` slot. The `v2.0.0` tag / GitHub Release remain a separate, not-yet-done step.
 
 ### Context
 

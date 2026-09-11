@@ -1,0 +1,48 @@
+---
+/**
+ * The Case Study tab panel (LP-002 FR-LP-026, issue #19): a short framing lede
+ * above the existing Project Summary and Tech Stack sections. No heading of its
+ * own — the tab button already reads "Case Study".
+ */
+import Prose from './Prose.astro';
+import Section from './Section.astro';
+import ProjectSummary from './ProjectSummary.astro';
+import StackTable from './StackTable.astro';
+import {
+  LANDING_STACK,
+  TECHCART_STACK,
+  MILESTONES_SHIPPED,
+  MILESTONES_TOTAL,
+} from '../data/techcart';
+---
+
+<Prose class="max-w-none">
+  <p>
+    <strong>Problem.</strong> Build a production, India-first e-commerce platform — a buyer
+    storefront and an admin console sharing one API and one database, with no business logic
+    duplicated between the two and no self-managed infrastructure.
+  </p>
+  <p>
+    <strong>Approach.</strong> Work feature-by-feature against a versioned SRS — Feature, then
+    update the SRS, then a milestone, then an issue, then code — on managed platforms only (Vercel,
+    Render, MongoDB Atlas), inside a flat npm-workspaces monorepo.
+  </p>
+  <p>
+    <strong>Outcome.</strong> {MILESTONES_SHIPPED} of {MILESTONES_TOTAL} milestones shipped —
+    catalog, authentication, cart, orders, payments, dashboard, and inventory are all live.
+    Non-functional hardening and launch readiness are what remain open.
+  </p>
+</Prose>
+
+<Section id="summary" title="Project Summary">
+  <ProjectSummary />
+</Section>
+
+<Section id="tech-stack" title="Tech Stack">
+  <StackTable
+    caption="This landing page"
+    head={['Concern', 'Choice', 'Why']}
+    rows={LANDING_STACK}
+  />
+  <StackTable caption="TechCart" head={['Layer', 'Technology']} rows={TECHCART_STACK} />
+</Section>
