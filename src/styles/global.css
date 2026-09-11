@@ -36,7 +36,7 @@
 html {
   color-scheme: light dark;
   scroll-behavior: smooth;
-  scroll-padding-top: 5rem; /* keep anchored sections clear of the sticky nav */
+  scroll-padding-top: 4rem; /* clear the sticky mobile TopBar for #hash jumps */
 }
 
 body {

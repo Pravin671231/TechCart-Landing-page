@@ -1,7 +1,7 @@
 ---
 interface Props {
-  /** DOM id + anchor target (from src/data/toc.ts). */
-  id: string;
+  /** Optional DOM id / anchor target for in-panel deep links. */
+  id?: string;
   /** Section heading. */
   title: string;
   /** Optional small label above the heading. */
@@ -11,11 +11,7 @@ interface Props {
 const { id, title, eyebrow } = Astro.props;
 ---
 
-<section
-  id={id}
-  tabindex="-1"
-  class="section-enter scroll-mt-20 border-b border-border py-14 first:pt-8 last:border-0 md:py-20"
->
+<section id={id} tabindex="-1" class="py-10 first:pt-2">
   {eyebrow && (
     <p class="mb-2 text-xs font-medium tracking-widest text-muted uppercase">{eyebrow}</p>
   )}

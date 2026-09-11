@@ -1,0 +1,66 @@
+---
+/**
+ * The tabbed documentation area below the Overview (LP-002 FR-LP-025, §6).
+ * Three tabs — Case Study · User Manual · Features — driven by `TABS` in
+ * `src/data/toc.ts` so the labels can't drift from the sidenav / TopBar.
+ *
+ * Panel ids are the bare nav slugs (`casestudy` / `user-manual` / `features`),
+ * so the `#casestudy` etc. links in `LeftSidenav` / `TopBar` resolve natively
+ * and with JavaScript disabled. All three panels render visible; `tabs.ts`
+ * hides the inactive two once it runs, so a no-JS reader gets every panel
+ * stacked with a clean heading outline.
+ */
+import { TABS } from '../data/toc';
+
+const active = TABS[0].id;
+---
+
+<section id="documentation" tabindex="-1" class="py-6">
+  <div
+    role="tablist"
+    aria-label="Documentation"
+    class="tablist flex gap-1 overflow-x-auto border-b border-border whitespace-nowrap"
+  >
+    {TABS.map((tab) => (
+      <button
+        type="button"
+        role="tab"
+        id={`tab-${tab.id}`}
+        aria-controls={tab.id}
+        aria-selected={tab.id === active ? 'true' : 'false'}
+        tabindex={tab.id === active ? 0 : -1}
+        class="tab shrink-0 snap-start border-b-2 border-transparent px-4 py-2 text-sm font-medium text-muted transition-colors hover:text-fg"
+      >
+        {tab.title}
+      </button>
+    ))}
+  </div>
+
+  <div role="tabpanel" id="casestudy" aria-labelledby="tab-casestudy" tabindex="0" class="pt-2">
+    <slot name="casestudy" />
+  </div>
+  <div role="tabpanel" id="user-manual" aria-labelledby="tab-user-manual" tabindex="0" class="pt-2">
+    <slot name="manual" />
+  </div>
+  <div role="tabpanel" id="features" aria-labelledby="tab-features" tabindex="0" class="pt-2">
+    <slot name="features" />
+  </div>
+</section>
+
+<style>
+  .tablist {
+    scrollbar-width: none;
+    scroll-snap-type: x proximity;
+  }
+  .tablist::-webkit-scrollbar {
+    display: none;
+  }
+  .tab[aria-selected='true'] {
+    border-color: var(--accent);
+    color: var(--fg);
+  }
+</style>
+
+<script>
+  import '../scripts/tabs.ts';
+</script>

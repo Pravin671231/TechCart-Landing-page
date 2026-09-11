@@ -11,12 +11,13 @@
  * With JavaScript disabled the TOC links are plain anchors and every section is
  * fully visible — nothing here is required for the page to work.
  *
- * The nav now has 4 top-level entries (`overview` / `casestudy` / `user-manual`
- * / `features`, from `NAV` in `toc.ts`); this observer already queries any
- * `section[id]` generically, so `#overview` today and `#documentation` once
- * M2.3 (issue #18) adds it are picked up without changes here.
+ * The only spied section is `#overview`: `#documentation` is a tablist whose
+ * active nav entry is owned by `tabs.ts`, so this observer skips it and clears
+ * every nav link when nothing is in the band, handing the highlight to
+ * `tabs.ts` as the reader scrolls into the docs area.
  */
 const sections = Array.from(document.querySelectorAll<HTMLElement>('main section[id]'));
+const spiedSections = sections.filter((s) => s.id !== 'documentation');
 const tocLinks = Array.from(document.querySelectorAll<HTMLAnchorElement>('[data-toc-link]'));
 
 if (sections.length && tocLinks.length) {
@@ -33,8 +34,10 @@ if (sections.length && tocLinks.length) {
   let activeId = '';
 
   const setActive = () => {
-    // Prefer the first section (in document order) currently in the band.
-    const nextId = sections.find((s) => visible.has(s.id))?.id ?? activeId;
+    // The first spied section (in document order) currently in the band, or
+    // none — clearing every nav link so `tabs.ts` can own the highlight in the
+    // docs area.
+    const nextId = spiedSections.find((s) => visible.has(s.id))?.id ?? '';
     if (nextId === activeId) return;
     activeId = nextId;
     for (const [id, links] of linksById) {
@@ -70,8 +73,8 @@ if (sections.length && tocLinks.length) {
     { rootMargin: '0px 0px -10% 0px', threshold: 0.05 },
   );
 
+  for (const section of spiedSections) spy.observe(section);
   for (const section of sections) {
-    spy.observe(section);
     if (section.classList.contains('section-enter')) reveal.observe(section);
   }
 }
