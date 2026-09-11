@@ -120,9 +120,10 @@ scroll-spy and the theme toggle).
 | Code | Feature       | Spec Doc                                | Milestone           | Status       |
 | ---- | ------------- | --------------------------------------- | ------------------- | ------------ |
 | LP   | Landing Page  | `features/LP-001-landing-page.md`       | M1 — Landing Page   | Spec drafted |
+| LP   | Redesign      | `features/LP-002-redesign.md` (not yet written) | M2 — Redesign | In progress — `FR-LP-021…027` tracked in [`../milestone.md`](../milestone.md) / [`../issues.md`](../issues.md) ahead of the spec doc |
 
-There is exactly one feature. Future additions (for example a standalone
-multi-page guide) would be filed here as `LP-002`, `GUIDE-001`, and so on.
+Future additions beyond `LP-002` (for example a standalone multi-page guide)
+would be filed here as `LP-003`, `GUIDE-001`, and so on.
 
 ---
 
@@ -167,6 +168,20 @@ All six issues are merged and milestone **M1 — Landing Page** is closed; the w
 is tagged [`v1.0.0`](https://github.com/Pravin671231/TechCart-Landing-page/releases/tag/v1.0.0).
 The full requirement-to-issue coverage table lives at the end of
 [`../issues.md`](../issues.md).
+
+`LP-002` is delivered as four work-package issues under milestone
+[**M2 — Redesign**](https://github.com/Pravin671231/TechCart-Landing-page/milestone/2):
+
+| Feature | Milestone      | Issue                                                                  | Requirements                      | Status   |
+| ------- | -------------- | ----------------------------------------------------------------------- | ---------------------------------- | -------- |
+| LP-002  | M2 — Redesign  | [#16](https://github.com/Pravin671231/TechCart-Landing-page/issues/16) | Ocean Royale brand kit (`FR-LP-021`) | Complete |
+| LP-002  | M2 — Redesign  | [#17](https://github.com/Pravin671231/TechCart-Landing-page/issues/17) | App-shell layout + Overview (`FR-LP-022,023,024,027`) | Complete |
+| LP-002  | M2 — Redesign  | [#18](https://github.com/Pravin671231/TechCart-Landing-page/issues/18) | Documentation tabs (`FR-LP-025,027`) | Complete |
+| LP-002  | M2 — Redesign  | [#19](https://github.com/Pravin671231/TechCart-Landing-page/issues/19) | Migrate M1 sections into tabs (`FR-LP-026`) | Open     |
+
+`#16`–`#18` are merged; `#19` is the only remaining issue, after which `v2.0.0`
+is tagged. Full drafts in [`../issues.md`](../issues.md); milestone summary in
+[`../milestone.md`](../milestone.md).
 
 ---
 

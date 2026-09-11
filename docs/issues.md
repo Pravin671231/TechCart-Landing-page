@@ -533,7 +533,7 @@ app toggle.
 
 ## M2.3 — Documentation tabs
 
-**Status:** Open — [#18](https://github.com/Pravin671231/TechCart-Landing-page/issues/18)
+**Status:** Complete — [#18](https://github.com/Pravin671231/TechCart-Landing-page/issues/18) (merged in [#26](https://github.com/Pravin671231/TechCart-Landing-page/pull/26))
 
 ### Context
 
