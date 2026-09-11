@@ -19,18 +19,17 @@ is the active milestone: reshape the shipped single-scroll page into an
 app-shell — an Ocean Royale brand kit, a `container-fluid` two-column grid, a
 sticky full-height left sidenav, an Overview hero with a Buyer/Admin app toggle,
 and a tabbed documentation area.
-[#16–#18](https://github.com/Pravin671231/TechCart-Landing-page/milestone/2)
-(M2.1 brand kit, M2.2 app-shell + Overview, M2.3 documentation tabs) are merged;
-[#19](https://github.com/Pravin671231/TechCart-Landing-page/issues/19) (M2.4 —
-migrate M1 sections into tabs) is the only one left, after which `v2.0.0` is
-tagged. Full drafts in [`issues.md`](issues.md). The `LP-002` feature spec is
-still to be written.
+All four work-package issues
+([#16–#19](https://github.com/Pravin671231/TechCart-Landing-page/milestone/2))
+are merged. **Still open:** tagging the `v2.0.0` release and writing the
+`LP-002` feature spec — neither has been done yet. Full drafts in
+[`issues.md`](issues.md).
 
 | ID  | Title                  | Scope                                                          | Status      | Release  |
 | --- | ---------------------- | ------------------------------------------------------------ | ----------- | -------- |
 | M0  | Repo & SRS Foundation  | Repository, `SRS.md`, `LP-001`, `architecture.md`, conventions | Complete    | —        |
 | M1  | Landing Page           | Build and deploy the single-page site per `LP-001`             | Complete    | `v1.0.0` |
-| M2  | Redesign               | Ocean Royale brand kit + `container-fluid` app-shell per `LP-002` | In progress — [#16–#18](https://github.com/Pravin671231/TechCart-Landing-page/milestone/2) merged, [#19](https://github.com/Pravin671231/TechCart-Landing-page/issues/19) open | `v2.0.0` (planned) |
+| M2  | Redesign               | Ocean Royale brand kit + `container-fluid` app-shell per `LP-002` | Issues complete — [#16–#19](https://github.com/Pravin671231/TechCart-Landing-page/milestone/2) merged; `v2.0.0` tag pending | `v2.0.0` (planned) |
 
 **Possible later milestones** (not committed):
 
@@ -126,7 +125,7 @@ One issue per package. Full drafts in [`issues.md`](issues.md). Order is strict:
 | [#16](https://github.com/Pravin671231/TechCart-Landing-page/issues/16) M2.1 | Ocean Royale brand kit — merged  | `FR-LP-021`                       |
 | [#17](https://github.com/Pravin671231/TechCart-Landing-page/issues/17) M2.2 | App-shell layout + Overview — merged | `FR-LP-022`, `023`, `024`, `027` |
 | [#18](https://github.com/Pravin671231/TechCart-Landing-page/issues/18) M2.3 | Documentation tabs — merged       | `FR-LP-025`, `027`               |
-| [#19](https://github.com/Pravin671231/TechCart-Landing-page/issues/19) M2.4 | Migrate M1 sections into tabs     | `FR-LP-026`                       |
+| [#19](https://github.com/Pravin671231/TechCart-Landing-page/issues/19) M2.4 | Migrate M1 sections into tabs — merged | `FR-LP-026`                       |
 
 ### Definition of Done
 
@@ -145,7 +144,7 @@ One issue per package. Full drafts in [`issues.md`](issues.md). Order is strict:
       keys, CTAs); readable with JavaScript disabled.
 - [ ] The theme toggle still switches light / dark and an explicit choice
       survives a reload; both palettes meet AA contrast.
-- [ ] `npm run build`, `npm run check`, `npm run lint`, and `npm run format:check`
+- [x] `npm run build`, `npm run check`, `npm run lint`, and `npm run format:check`
       pass; `npm run check:a11y` reports 0 violations.
 - [ ] Each implementation PR is squash-merged to `main` in order; version tagged
       `v2.0.0` after M2.4.

@@ -99,13 +99,15 @@ keyboard alone:
 **Page assembly.** `src/pages/index.astro` imports `BaseLayout` and renders the
 app-shell grid: `LeftSidenav` (sticky, `lg`+) + a main column with `TopBar`
 (`lg:hidden` menu drawer), `Overview`, then `DocTabs` — the Case Study / User
-Manual / Features tablist, each `<slot>` holding the M1 content in `Section`
-wrappers (panel ids are the bare `casestudy`/`user-manual`/`features` slugs so
-`LeftSidenav`/`TopBar` links resolve natively; tab-button ids get a `tab-`
-prefix). `BaseLayout.astro` owns `<head>` (meta/OG/Twitter, canonical, sitemap,
-favicons, theme-color) and the skip link. `@astrojs/sitemap` generates
-`sitemap-index.xml`; `astro.config.mjs` `site` is a placeholder Vercel URL
-until the project is connected.
+Manual / Features tablist (panel ids are the bare `casestudy`/`user-manual`/
+`features` slugs so `LeftSidenav`/`TopBar` links resolve natively; tab-button
+ids get a `tab-` prefix). The `casestudy` slot holds `<CaseStudy />` (its own
+Problem/Approach/Outcome lede plus the Project Summary and Tech Stack
+sections); the `manual`/`features` slots hold the rest of the M1 content
+directly in `Section` wrappers. `BaseLayout.astro` owns `<head>`
+(meta/OG/Twitter, canonical, sitemap, favicons, theme-color) and the skip
+link. `@astrojs/sitemap` generates `sitemap-index.xml`; `astro.config.mjs`
+`site` is a placeholder Vercel URL until the project is connected.
 
 ## Conventions
 
@@ -137,12 +139,10 @@ until the project is connected.
 
 ## In flight — M2 Redesign
 
-`docs/milestone.md` + `docs/issues.md` (M2.1–M2.4) describe a redesign to an
-app-shell. **M2.1 (Ocean Royale brand kit, #16), M2.2 (app-shell layout +
-Overview, #17), and M2.3 (documentation tabs, #18) are merged** — see the
-Design tokens & theming, Interactivity budget, and Page assembly sections
-above. `#casestudy`/`#user-manual`/`#features` all resolve now. Remaining:
-**M2.4 (#19)** — reframe the Case Study panel with a problem → approach →
-outcome lede (`CaseStudy.astro`) and split `Footer`'s "Get Started" content
-into the User Manual panel — after which `v2.0.0` is tagged. The feature spec
-`LP-002` is still not written.
+`docs/milestone.md` + `docs/issues.md` describe the M2 redesign. **All four
+issues are merged** — M2.1 (Ocean Royale brand kit, #16), M2.2 (app-shell
+layout + Overview, #17), M2.3 (documentation tabs, #18), M2.4 (`CaseStudy.astro`
+Problem/Approach/Outcome lede, #19) — see the Design tokens & theming,
+Interactivity budget, and Page assembly sections above. Two loose ends remain,
+neither started: tagging the **`v2.0.0`** GitHub Release, and writing the
+`LP-002` feature spec doc.
