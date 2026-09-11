@@ -19,6 +19,9 @@ as a product and doubles as a guide to the engineering process behind it.
 | [`docs/milestone.md`](docs/milestone.md) | Milestone roadmap — M1 scope, the six work packages, and the Definition of Done |
 | [`docs/issues.md`](docs/issues.md) | Issue drafts M1.1–M1.6 (opened as #1–#6) with task checklists and a full requirement-to-issue coverage table |
 | [`docs/architecture.md`](docs/architecture.md) | How the page will be built: Astro + Tailwind, planned source layout, deploy topology, repo conventions |
+| [`docs/user-manuals/`](docs/user-manuals/) | Entry point + per-app summaries linking TechCart's live Buyer App and Admin App user manuals |
+| [`docs/case-studies/`](docs/case-studies/) | A short Problem → Approach → Architecture → Outcome write-up for the TechCart Buyer App and Admin App |
+| [`docs/features/`](docs/features/) | The TechCart capability set, split into buyer-facing and staff-facing feature lists |
 
 ## Planned stack
 
